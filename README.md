@@ -1,84 +1,124 @@
-# No AI Feed — Hide AI Content on Facebook
+# No AI Feed
 
-**A simple Chrome extension that helps you remove AI-generated and AI-related content from your Facebook feed.**
+### Hide AI content from Facebook. Keep the feed you actually want.
 
-No AI Feed gives you more control over what you see on Facebook. It can detect AI labels, check media metadata, and filter posts that mention AI tools or AI topics such as ChatGPT, OpenAI, Claude, Gemini, Midjourney, Sora, and more.
+**No AI Feed** is a free Chrome extension that helps you hide AI-generated posts and AI-related content from Facebook.
 
-You choose what gets filtered — and whether matching posts are **blurred** or **removed completely**.
+It can filter posts using **Facebook AI labels, media metadata, and your own keywords** — then either blur them or remove them completely.
 
-> **Available now:** Facebook  
-> **Coming later:** Instagram, X / Twitter, LinkedIn, Reddit, YouTube, and more.
+**No image scanning. No external AI. No tracking.**
 
-## What No AI Feed does
+> **Works on Facebook today.** Instagram, X, LinkedIn, Reddit and YouTube are planned next.
 
-- **Hides AI-generated content** using Facebook / Meta AI labels.
-- **Checks media metadata** for AI-generation signals when available.
-- **Filters AI topics and keywords** such as ChatGPT, OpenAI, Claude, Gemini, Midjourney, Stable Diffusion, Sora, AI agents, LLMs, cloud AI tools, and more.
-- Lets you **add your own keywords**.
-- Lets you **exclude words you still want to see**.
-- Includes **sensitivity controls** so you decide how broad the filter should be.
-- Lets you **blur posts** or **remove them completely**.
-- Includes an adjustable **blur strength** slider.
+---
 
-No AI Feed does **not** use image recognition or AI vision to judge how an image looks.
+## Clean up your Facebook feed
 
-## Made for your preferences
+Facebook can quickly fill up with AI-generated images, AI news, ChatGPT posts, AI tools, prompts, automation content and other topics you may simply not want to see.
 
-Not everyone wants to hide the same things.
+No AI Feed gives you control over that.
 
-You can use No AI Feed only for obvious AI-generated posts, or make it much broader and remove posts about AI tools, AI companies, machine learning, automation, cloud AI, and other related topics.
+| Filter | What it catches |
+| --- | --- |
+| **AI Labels** | Posts Facebook / Meta identifies as AI-generated |
+| **Media Metadata** | AI-generation information stored inside supported media files |
+| **Keywords & Topics** | Posts mentioning AI, ChatGPT, OpenAI, Claude, Gemini, Midjourney, Sora, LLMs, automation, cloud AI and more |
 
-The filter is fully customizable from the extension popup.
+You can use all three together or turn any of them off.
+
+---
+
+## Your feed, your rules
+
+Choose how much AI-related content you want to remove.
+
+- Adjust **filter sensitivity** from narrow to aggressive.
+- Add **custom words or topics** you never want to see.
+- Add **exceptions** for words you still want in your feed.
+- Choose **Blur** if you want the option to reveal a post.
+- Choose **Remove** if you want matching posts gone completely.
+- Adjust the **blur strength** to your preference.
+
+You can change everything from the extension popup at any time.
+
+---
 
 ## Install No AI Feed
 
-Until the Chrome Web Store version is available:
+The Chrome Web Store version is coming. For now, you can install it directly from GitHub:
 
-1. Click **Code → Download ZIP** on this GitHub page.
-2. Extract the ZIP file.
-3. Open Chrome and go to `chrome://extensions`.
+1. Click **Code → Download ZIP** above.
+2. Extract the downloaded ZIP.
+3. Open `chrome://extensions` in Chrome.
 4. Turn on **Developer mode**.
 5. Click **Load unpacked**.
-6. Select the extracted **No-AI-Feed** folder.
+6. Select the extracted `No-AI-Feed` folder.
 7. Open Facebook and **refresh the page once**.
-8. Click the **No AI Feed** extension icon to choose your settings.
 
-That’s it.
+Then click the **No AI Feed** extension icon to choose what you want filtered.
 
-## Privacy
+---
 
-No AI Feed is designed to work locally in your browser.
+## Private by design
 
-- Your Facebook posts are not sent to us.
-- Your media is not uploaded to us.
-- Your keywords and settings stay on your device.
-- No analytics or advertising trackers are included.
-- No external AI service is used.
+Filtering happens in your browser.
 
-Read the full [Privacy Policy](./PRIVACY.md).
+- We do **not** collect your Facebook posts.
+- We do **not** upload your media.
+- We do **not** collect your keywords or settings.
+- We do **not** use analytics or advertising trackers.
+- We do **not** send content to an external AI service.
 
-## Future plans
+Your preferences stay on your device.
 
-The goal is to turn No AI Feed into a **cross-platform AI content filter** for the social platforms people use every day.
+See the full [Privacy Policy](./PRIVACY.md).
 
-Planned support:
+---
 
-- [x] Facebook
-- [ ] Instagram
-- [ ] X / Twitter
-- [ ] LinkedIn
-- [ ] Reddit
-- [ ] YouTube
-- [ ] More social and content platforms
+## Coming next
 
-Future improvements may also include shared filter settings across platforms, platform-specific keyword profiles, import/export presets, account allowlists/blocklists, and better local filter statistics.
+No AI Feed starts with Facebook, but the goal is simple: **one AI content filter for all of your social feeds.**
 
-## Feedback and contributions
+- ✅ Facebook
+- ⏳ Instagram
+- ⏳ X / Twitter
+- ⏳ LinkedIn
+- ⏳ Reddit
+- ⏳ YouTube
+- ⏳ More platforms
 
-If Facebook changes and the extension stops filtering correctly, or if you want support for another platform, open an issue on GitHub.
+Future versions will also make it easier to reuse the same filters across platforms and create different filtering profiles for different feeds.
 
-Contributions and pull requests are welcome.
+---
 
-## Disclaimer
+## FAQ
 
-No AI Feed is an independent project and is not affiliated with or endorsed by Facebook, Meta, OpenAI, Anthropic, Google, Microsoft, or any other company or platform mentioned by its filters.
+### Can I hide AI-generated posts on Facebook?
+Yes. No AI Feed can hide posts using Facebook AI labels, supported media metadata and customizable AI-related keywords.
+
+### Can it hide posts about ChatGPT, OpenAI, Claude or Gemini?
+Yes. Keyword filtering can remove posts mentioning popular AI tools, companies and topics. You can also add your own words.
+
+### Can I use it as a broad Facebook AI blocker?
+Yes. Increase the sensitivity if you want to filter a wider range of AI, machine-learning, automation and related technology content.
+
+### Does it analyze or recognize images?
+No. No AI Feed does not use computer vision or inspect image pixels. It only uses labels, supported metadata and text rules.
+
+### Can I blur posts instead of deleting them from my feed?
+Yes. Choose **Blur** and set the blur strength you want. You can also choose **Remove** to hide matching posts completely.
+
+### Is my Facebook data sent anywhere?
+No. The extension is designed to perform its filtering locally in your browser.
+
+---
+
+## Help improve No AI Feed
+
+Found something that should have been filtered? Facebook changed and the extension stopped working? Want another platform supported?
+
+Open an issue or submit a pull request.
+
+---
+
+**No AI Feed** is an independent project and is not affiliated with or endorsed by Facebook, Meta, OpenAI, Anthropic, Google, Microsoft or any other company mentioned by its filters.
