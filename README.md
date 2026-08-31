@@ -12,7 +12,7 @@ A free Chrome extension that filters **AI-generated posts, AI tools, AI news, Ch
 [![Privacy](https://img.shields.io/badge/Privacy-Local%20Only-2ea44f)](./PRIVACY.md)
 [![GitHub Stars](https://img.shields.io/github/stars/Ibrahim-3d/No-AI-Feed?style=flat&logo=github)](https://github.com/Ibrahim-3d/No-AI-Feed/stargazers)
 
-## [⬇️ Download No AI Feed — ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/archive/refs/heads/main.zip)
+## [⬇️ Download .ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/archive/refs/heads/main.zip)
 
 **Free · No tracking · No external AI · No image scanning**
 
@@ -22,7 +22,7 @@ A free Chrome extension that filters **AI-generated posts, AI tools, AI news, Ch
 
 ## Install in 60 seconds
 
-1. **[Download the ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/archive/refs/heads/main.zip)**.
+1. **[Download .ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/archive/refs/heads/main.zip)**.
 2. Extract the ZIP.
 3. Open `chrome://extensions` in Chrome.
 4. Turn on **Developer mode**.
