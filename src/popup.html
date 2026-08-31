@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>No AI Feed</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>No AI Feed</h1>
+        <p>Clean up your Facebook feed</p>
+      </div>
+      <label class="switch" aria-label="Turn No AI Feed on or off">
+        <input id="enabled" type="checkbox" />
+        <span></span>
+      </label>
+    </header>
+
+    <section class="card diagnostic-card">
+      <div class="diagnostic-row">
+        <span><b>Facebook connection</b><small id="connectionDetail">Checking current tab…</small></span>
+        <span id="connectionDot" class="connection-dot checking" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>What should I detect?</h2>
+      <label class="toggle-row">
+        <span><b>Facebook AI labels</b><small>Posts marked “AI info”, “Made with AI”, etc.</small></span>
+        <input id="detectLabels" type="checkbox" />
+      </label>
+      <label class="toggle-row">
+        <span><b>Media metadata</b><small>AI provenance stored inside the media file.</small></span>
+        <input id="detectMetadata" type="checkbox" />
+      </label>
+      <label class="toggle-row">
+        <span><b>AI topics & keywords</b><small>Hide posts talking about AI, tools, models or cloud topics.</small></span>
+        <input id="detectKeywords" type="checkbox" />
+      </label>
+    </section>
+
+    <section id="metadataControls" class="card">
+      <div class="section-head">
+        <label for="detectionSensitivity">Metadata sensitivity</label>
+        <output id="detectionSensitivityValue"></output>
+      </div>
+      <input id="detectionSensitivity" class="range" type="range" min="1" max="5" step="1" />
+      <div class="range-ends"><span>Strict</span><span>Aggressive</span></div>
+      <p id="metadataHint" class="hint"></p>
+    </section>
+
+    <section id="keywordControls" class="card">
+      <div class="section-head">
+        <label for="keywordSensitivity">Keyword coverage</label>
+        <output id="keywordSensitivityValue"></output>
+      </div>
+      <input id="keywordSensitivity" class="range" type="range" min="1" max="5" step="1" />
+      <div class="range-ends"><span>Core AI only</span><span>Everything adjacent</span></div>
+      <p id="keywordHint" class="hint"></p>
+
+      <details>
+        <summary>Customize keywords</summary>
+        <label for="customKeywords" class="field-label">Always filter these</label>
+        <textarea id="customKeywords" rows="4" placeholder="One phrase per line&#10;e.g. Manus AI"></textarea>
+        <label for="excludedKeywords" class="field-label">Never filter these</label>
+        <textarea id="excludedKeywords" rows="3" placeholder="One phrase per line&#10;e.g. cloud photography"></textarea>
+        <p class="hint">Exclusions override the built-in and custom keyword lists.</p>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>When something is detected</h2>
+      <div class="segmented" role="group" aria-label="Filter behavior">
+        <label><input type="radio" name="behavior" value="blur" /><span>Blur it</span></label>
+        <label><input type="radio" name="behavior" value="remove" /><span>Remove it</span></label>
+      </div>
+
+      <div id="blurControls" class="subcontrol">
+        <div class="section-head">
+          <label for="blurStrength">Blur strength</label>
+          <output id="blurStrengthValue"></output>
+        </div>
+        <input id="blurStrength" class="range" type="range" min="2" max="40" step="1" />
+        <div class="range-ends"><span>Soft</span><span>Opaque</span></div>
+      </div>
+
+      <label class="toggle-row compact">
+        <span><b>Show why it was filtered</b></span>
+        <input id="showReason" type="checkbox" />
+      </label>
+    </section>
+
+    <section class="privacy-note" aria-label="Privacy">
+      <b>Private by design</b>
+      <span>Filtering runs in your browser. No post text, media, metadata, or settings are sent to us.</span>
+    </section>
+
+    <footer>
+      <span id="status">Saved automatically</span>
+      <button id="rescan" type="button">Rescan Facebook</button>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
