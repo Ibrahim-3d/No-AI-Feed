@@ -34,6 +34,10 @@ Then click the **No AI Feed** extension icon and choose what you want hidden.
 
 > Already had Facebook open while installing? Refresh the Facebook tab once so the extension can start filtering.
 
+<div align="center">
+  <img src="./assets/no-ai-feed-facebook-ai-filter.png" alt="No AI Feed Chrome extension filtering AI content on Facebook" width="900">
+</div>
+
 ---
 
 ## What it filters
