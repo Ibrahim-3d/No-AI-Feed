@@ -1,123 +1,67 @@
-# No AI Feed
+# No AI Feed — Hide AI Content on Facebook
 
-**Take AI out of your feed.**
+**A simple Chrome extension that helps you remove AI-generated and AI-related content from your Facebook feed.**
 
-No AI Feed is a local-first Chrome extension that filters AI-related content from Facebook. It can detect Meta/Facebook AI labels, inspect media metadata/provenance, and filter posts using customizable AI/topic keywords. Matching posts can either be blurred or removed completely.
+No AI Feed gives you more control over what you see on Facebook. It can detect AI labels, check media metadata, and filter posts that mention AI tools or AI topics such as ChatGPT, OpenAI, Claude, Gemini, Midjourney, Sora, and more.
 
-> **Current platform:** Facebook  
-> **Roadmap:** Instagram, X/Twitter, LinkedIn, Reddit, YouTube, and other feed-based platforms.
+You choose what gets filtered — and whether matching posts are **blurred** or **removed completely**.
 
-## What it does
+> **Available now:** Facebook  
+> **Coming later:** Instagram, X / Twitter, LinkedIn, Reddit, YouTube, and more.
 
-No AI Feed gives you three independent detection layers:
+## What No AI Feed does
 
-### 1. Facebook / Meta AI labels
-Detects visible AI-related labels and disclosures in Facebook posts, including signals such as:
+- **Hides AI-generated content** using Facebook / Meta AI labels.
+- **Checks media metadata** for AI-generation signals when available.
+- **Filters AI topics and keywords** such as ChatGPT, OpenAI, Claude, Gemini, Midjourney, Stable Diffusion, Sora, AI agents, LLMs, cloud AI tools, and more.
+- Lets you **add your own keywords**.
+- Lets you **exclude words you still want to see**.
+- Includes **sensitivity controls** so you decide how broad the filter should be.
+- Lets you **blur posts** or **remove them completely**.
+- Includes an adjustable **blur strength** slider.
 
-- AI info
-- Made with AI
-- Imagined with AI
-- AI-generated / synthetic-media disclosures
-- Supported Arabic AI-label patterns
+No AI Feed does **not** use image recognition or AI vision to judge how an image looks.
 
-### 2. Media metadata
-Optionally checks metadata/provenance embedded in post media for AI-generation signals, including:
+## Made for your preferences
 
-- AI provenance markers such as `trainedAlgorithmicMedia`
-- generator/tool names stored in metadata
-- creator/software metadata indicating generative AI
-- EXIF/XMP/IPTC-style metadata fields and supported provenance containers
+Not everyone wants to hide the same things.
 
-This layer **does not inspect image pixels** and does not run computer vision or an AI image classifier.
+You can use No AI Feed only for obvious AI-generated posts, or make it much broader and remove posts about AI tools, AI companies, machine learning, automation, cloud AI, and other related topics.
 
-### 3. AI topics & keywords
-Filters posts based on what they talk about. Built-in sensitivity levels range from core AI terms to broad adjacent technology topics.
+The filter is fully customizable from the extension popup.
 
-Examples include:
+## Install No AI Feed
 
-- ChatGPT, OpenAI, Claude, Gemini
-- Midjourney, Stable Diffusion, Sora, Runway, Kling, Flux
-- LLMs, AI agents, RAG, MCP, machine learning
-- AI infrastructure, vector databases, CUDA, AI chips
-- At maximum sensitivity: cloud, AWS, Azure, GPU, API, automation, SaaS, and similar adjacent terms
+Until the Chrome Web Store version is available:
 
-You can also:
-
-- add your own custom keywords
-- exclude keywords you do not want filtered
-- change keyword sensitivity at any time
-
-## Filter modes
-
-Choose how matching content is handled:
-
-- **Blur** — blur detected posts while keeping them in the feed, with adjustable blur strength.
-- **Remove** — remove detected posts from the feed completely.
-
-Blurred posts can be temporarily revealed when needed.
-
-## Install manually
-
-Until the extension is available through the Chrome Web Store:
-
-1. Download or clone this repository.
-2. If downloaded as a ZIP, extract it.
+1. Click **Code → Download ZIP** on this GitHub page.
+2. Extract the ZIP file.
 3. Open Chrome and go to `chrome://extensions`.
-4. Enable **Developer mode** in the top-right corner.
+4. Turn on **Developer mode**.
 5. Click **Load unpacked**.
-6. Select the repository folder — the folder containing `manifest.json`.
-7. Open or refresh Facebook.
-8. Click the **No AI Feed** extension icon to configure filtering.
+6. Select the extracted **No-AI-Feed** folder.
+7. Open Facebook and **refresh the page once**.
+8. Click the **No AI Feed** extension icon to choose your settings.
 
-> After installing or reloading an unpacked extension, refresh any Facebook tabs that were already open so the content script can activate.
-
-## Settings
-
-The popup lets you control:
-
-- extension on/off
-- Facebook AI-label detection
-- media-metadata detection
-- metadata sensitivity
-- keyword/topic detection
-- keyword sensitivity
-- custom keywords
-- keyword exclusions
-- blur vs. remove behavior
-- blur strength
-
-The popup also shows whether the extension is connected to the current Facebook tab and how many feed posts it can currently detect/filter.
+That’s it.
 
 ## Privacy
 
-No AI Feed is designed to run locally in your browser.
+No AI Feed is designed to work locally in your browser.
 
-- No Facebook post text is sent to the developer.
-- No media is uploaded to the developer.
-- No extension settings are sent to the developer.
-- No analytics or advertising SDKs are included.
-- No remote AI service is used.
-- Preferences are stored locally with Chrome extension storage.
+- Your Facebook posts are not sent to us.
+- Your media is not uploaded to us.
+- Your keywords and settings stay on your device.
+- No analytics or advertising trackers are included.
+- No external AI service is used.
 
-When metadata detection is enabled, the extension may request Facebook-hosted media so it can inspect embedded metadata locally in the browser. It does not forward that media to another service.
+Read the full [Privacy Policy](./PRIVACY.md).
 
-See [PRIVACY.md](./PRIVACY.md) for the full policy.
+## Future plans
 
-## Current scope
+The goal is to turn No AI Feed into a **cross-platform AI content filter** for the social platforms people use every day.
 
-Version **1.0.0** focuses on Facebook and intentionally avoids pixel-level AI detection. The product is built around transparent evidence the user can control:
-
-1. platform-provided AI labels
-2. media metadata/provenance
-3. customizable text/topic rules
-
-Facebook changes its DOM frequently, so the feed detector includes multiple selectors and fallback rescanning to remain resilient to layout changes.
-
-## Roadmap
-
-The longer-term goal is to turn No AI Feed into a **cross-platform feed filter** using a shared filtering engine with platform-specific adapters.
-
-### Planned platform expansion
+Planned support:
 
 - [x] Facebook
 - [ ] Instagram
@@ -125,50 +69,16 @@ The longer-term goal is to turn No AI Feed into a **cross-platform feed filter**
 - [ ] LinkedIn
 - [ ] Reddit
 - [ ] YouTube
-- [ ] Additional feed-based platforms
+- [ ] More social and content platforms
 
-### Planned product improvements
+Future improvements may also include shared filter settings across platforms, platform-specific keyword profiles, import/export presets, account allowlists/blocklists, and better local filter statistics.
 
-- [ ] Shared global rules across platforms
-- [ ] Per-platform keyword profiles
-- [ ] Import/export filter presets
-- [ ] Better metadata/provenance coverage
-- [ ] Platform-specific AI-label adapters
-- [ ] Optional allowlists/blocklists by page, account, or community
-- [ ] Filter statistics and local-only activity summaries
-- [ ] Chrome Web Store release
+## Feedback and contributions
 
-The architecture should evolve toward:
+If Facebook changes and the extension stops filtering correctly, or if you want support for another platform, open an issue on GitHub.
 
-```text
-No AI Feed
-├── Shared filtering engine
-│   ├── Label detection
-│   ├── Metadata/provenance detection
-│   ├── Keyword/topic rules
-│   └── User preferences
-│
-└── Platform adapters
-    ├── Facebook
-    ├── Instagram
-    ├── X / Twitter
-    ├── LinkedIn
-    ├── Reddit
-    └── YouTube
-```
-
-## Contributing
-
-Issues and pull requests are welcome, especially for:
-
-- Facebook DOM compatibility fixes
-- new platform adapters
-- additional AI-label patterns
-- metadata/provenance improvements
-- keyword taxonomy improvements
-
-If a platform changes its feed markup and filtering stops working, please open an issue with the platform, browser version, and a description of what stopped working.
+Contributions and pull requests are welcome.
 
 ## Disclaimer
 
-No AI Feed is an independent project and is not affiliated with or endorsed by Meta, Facebook, OpenAI, Anthropic, Google, Microsoft, or any other platform or AI provider mentioned by its filters.
+No AI Feed is an independent project and is not affiliated with or endorsed by Facebook, Meta, OpenAI, Anthropic, Google, Microsoft, or any other company or platform mentioned by its filters.
