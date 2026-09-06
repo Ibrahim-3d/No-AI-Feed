@@ -26,8 +26,41 @@
       </div>
     </section>
 
+    <section class="card personal-card">
+      <div class="section-head">
+        <div>
+          <h2>Hide what you don’t want</h2>
+          <p class="hint top-hint">Block any topic, phrase, creator, Facebook page or YouTube channel.</p>
+        </div>
+        <span id="ruleCount" class="count-pill">0 rules</span>
+      </div>
+
+      <div class="rule-builder">
+        <select id="ruleType" aria-label="Filter type">
+          <option value="topic">Topic / phrase</option>
+          <option value="source">Creator / page / channel</option>
+        </select>
+        <div class="rule-input-row">
+          <input id="ruleValue" type="text" maxlength="120" autocomplete="off" placeholder="e.g. crypto, football transfers, politics" />
+          <button id="addRule" type="button">Add</button>
+        </div>
+        <small id="ruleHelp">Hide any post or video that mentions this topic or phrase.</small>
+      </div>
+
+      <button id="quickBlockSource" class="secondary-button quick-source" type="button" hidden></button>
+
+      <div id="ruleList" class="rule-list" aria-live="polite"></div>
+
+      <details class="exceptions">
+        <summary>Never hide exceptions</summary>
+        <label for="excludedKeywords" class="field-label">Always allow when these words appear</label>
+        <textarea id="excludedKeywords" rows="3" placeholder="One phrase per line&#10;e.g. cloud photography"></textarea>
+        <p class="hint">Exceptions override your personal topic and creator rules, and the built-in AI topic list.</p>
+      </details>
+    </section>
+
     <section class="card">
-      <h2>What should I detect?</h2>
+      <h2>Built-in AI detection</h2>
       <label class="toggle-row">
         <span><b>Facebook AI labels</b><small>Facebook only · “AI info”, “Made with AI”, etc.</small></span>
         <input id="detectLabels" type="checkbox" />
@@ -37,7 +70,7 @@
         <input id="detectMetadata" type="checkbox" />
       </label>
       <label class="toggle-row">
-        <span><b>AI topics & keywords</b><small>Facebook + YouTube · hide AI tools, models and topics.</small></span>
+        <span><b>Built-in AI topics</b><small>Facebook + YouTube · ChatGPT, Higgsfield, Astra, AI tools, models and related topics.</small></span>
         <input id="detectKeywords" type="checkbox" />
       </label>
     </section>
@@ -54,21 +87,12 @@
 
     <section id="keywordControls" class="card">
       <div class="section-head">
-        <label for="keywordSensitivity">Keyword coverage</label>
+        <label for="keywordSensitivity">Built-in AI coverage</label>
         <output id="keywordSensitivityValue"></output>
       </div>
       <input id="keywordSensitivity" class="range" type="range" min="1" max="5" step="1" />
       <div class="range-ends"><span>Core AI only</span><span>Everything adjacent</span></div>
       <p id="keywordHint" class="hint"></p>
-
-      <details>
-        <summary>Customize keywords</summary>
-        <label for="customKeywords" class="field-label">Always filter these</label>
-        <textarea id="customKeywords" rows="5" placeholder="One phrase per line&#10;e.g. Higgsfield&#10;e.g. Astra"></textarea>
-        <label for="excludedKeywords" class="field-label">Never filter these</label>
-        <textarea id="excludedKeywords" rows="3" placeholder="One phrase per line&#10;e.g. cloud photography"></textarea>
-        <p class="hint">Exclusions override the built-in and custom keyword lists.</p>
-      </details>
     </section>
 
     <section class="card">
@@ -95,7 +119,7 @@
 
     <section class="privacy-note" aria-label="Privacy">
       <b>Private by design</b>
-      <span>Filtering runs in your browser. No post text, video titles, media, metadata, or settings are sent to us.</span>
+      <span>Your personal filter rules and feed content stay in your browser. Nothing is sent to us.</span>
     </section>
 
     <footer>
