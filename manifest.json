@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "No AI Feed",
-  "version": "1.0.0",
-  "description": "Filter AI-related Facebook posts using Meta labels, media metadata, and customizable keywords. Blur or remove matches.",
+  "version": "1.1.0",
+  "description": "Filter AI-related content on Facebook and YouTube using platform labels, media metadata, and customizable keywords. Blur or remove matches.",
   "permissions": [
     "storage",
     "activeTab"
@@ -12,7 +12,10 @@
     "https://web.facebook.com/*",
     "https://m.facebook.com/*",
     "https://*.fbcdn.net/*",
-    "https://*.facebook.com/*"
+    "https://*.facebook.com/*",
+    "https://www.youtube.com/*",
+    "https://m.youtube.com/*",
+    "https://youtube.com/*"
   ],
   "background": {
     "service_worker": "src/background.js"
@@ -30,6 +33,20 @@
       ],
       "js": [
         "src/content.js"
+      ],
+      "css": [
+        "src/content.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*",
+        "https://youtube.com/*"
+      ],
+      "js": [
+        "src/youtube.js"
       ],
       "css": [
         "src/content.css"
