@@ -4,7 +4,7 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 390px; background: Canvas; color: CanvasText; }
+body { margin: 0; min-width: 410px; background: Canvas; color: CanvasText; }
 main { padding: 16px; }
 header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 h1 { margin: 0; font-size: 19px; line-height: 1.15; letter-spacing: -.02em; }
@@ -22,18 +22,42 @@ label { font-size: 12px; font-weight: 650; }
 .toggle-row input[type="checkbox"] { width: 17px; height: 17px; flex: 0 0 auto; accent-color: #1877f2; }
 .toggle-row.compact { margin-top: 10px; padding-bottom: 0; }
 
-.section-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .section-head label { margin: 0; }
-output { padding: 3px 7px; border-radius: 999px; background: color-mix(in srgb, #1877f2 12%, transparent); color: #1877f2; font-size: 10px; font-weight: 750; }
+.section-head h2 { margin-bottom: 0; }
+output, .count-pill { padding: 3px 7px; border-radius: 999px; background: color-mix(in srgb, #1877f2 12%, transparent); color: #1877f2; font-size: 10px; font-weight: 750; white-space: nowrap; }
 .range { width: 100%; margin: 10px 0 2px; accent-color: #1877f2; }
 .range-ends { display: flex; justify-content: space-between; opacity: .42; font-size: 9.5px; }
 .hint { margin: 7px 0 0; opacity: .57; font-size: 10.5px; line-height: 1.4; }
+.top-hint { margin-top: 3px; max-width: 300px; }
 .disabled-section { opacity: .48; }
 
-textarea { width: 100%; resize: vertical; border: 1px solid color-mix(in srgb, CanvasText 17%, transparent); border-radius: 8px; background: Canvas; color: CanvasText; padding: 8px 9px; font: 11px/1.4 inherit; }
+textarea, input[type="text"], select { width: 100%; border: 1px solid color-mix(in srgb, CanvasText 17%, transparent); border-radius: 8px; background: Canvas; color: CanvasText; padding: 8px 9px; font: 11px/1.4 inherit; }
+textarea { resize: vertical; }
+select { cursor: pointer; }
 details { margin-top: 10px; border-top: 1px solid color-mix(in srgb, CanvasText 8%, transparent); padding-top: 9px; }
 summary { cursor: pointer; font-size: 11px; font-weight: 700; }
 .field-label { display: block; margin: 10px 0 5px; font-size: 10.5px; }
+
+.personal-card { padding: 13px; }
+.rule-builder { display: grid; gap: 7px; margin-top: 11px; padding: 10px; border-radius: 10px; background: color-mix(in srgb, CanvasText 4%, transparent); }
+.rule-input-row { display: grid; grid-template-columns: 1fr auto; gap: 7px; }
+.rule-builder small { opacity: .5; font-size: 9.8px; line-height: 1.35; }
+.rule-builder button { min-width: 55px; }
+.rule-list { display: grid; gap: 6px; margin-top: 10px; max-height: 190px; overflow: auto; }
+.rule-empty { padding: 10px; border: 1px dashed color-mix(in srgb, CanvasText 14%, transparent); border-radius: 9px; text-align: center; opacity: .48; font-size: 10.5px; line-height: 1.4; }
+.rule-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 0; padding: 7px 8px; border: 1px solid color-mix(in srgb, CanvasText 9%, transparent); border-radius: 9px; background: Canvas; }
+.rule-main { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.rule-type { flex: 0 0 auto; padding: 2px 5px; border-radius: 5px; font-size: 8px; font-weight: 800; letter-spacing: .04em; }
+.rule-type.topic { color: #1877f2; background: color-mix(in srgb, #1877f2 12%, transparent); }
+.rule-type.source { color: #8e44ad; background: color-mix(in srgb, #8e44ad 13%, transparent); }
+.rule-value { overflow: hidden; font-size: 10.8px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.rule-remove { flex: 0 0 auto; width: 24px; height: 24px; padding: 0; border-radius: 6px; background: transparent; color: CanvasText; opacity: .42; font-size: 17px; line-height: 1; }
+.rule-remove:hover { opacity: .8; background: color-mix(in srgb, CanvasText 7%, transparent); }
+.exceptions { margin-top: 11px; }
+.secondary-button { width: 100%; margin-top: 8px; border: 1px solid color-mix(in srgb, CanvasText 13%, transparent); background: transparent; color: CanvasText; }
+.secondary-button:hover { background: color-mix(in srgb, CanvasText 5%, transparent); }
+.quick-source { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; border-radius: 10px; background: color-mix(in srgb, CanvasText 7%, transparent); }
 .segmented label { position: relative; margin: 0; cursor: pointer; }
