@@ -1,8 +1,8 @@
 # Privacy Policy — No AI Feed
 
-**Effective date:** August 31, 2026
+**Effective date:** September 6, 2026
 
-No AI Feed is a Chrome extension that filters AI-related content from supported social feeds according to settings chosen by the user. Version 1.0.0 currently supports Facebook.
+No AI Feed is a Chrome extension that filters AI-related content from supported social feeds according to settings chosen by the user. Version 1.1.0 supports Facebook and YouTube.
 
 ## Information processed by the extension
 
@@ -11,19 +11,22 @@ To provide filtering, No AI Feed may process the following information inside th
 - rendered Facebook post text and visible labels, including Meta/Facebook AI labels;
 - URLs of media displayed in Facebook posts;
 - metadata/provenance bytes contained in Facebook-hosted media when metadata detection is enabled;
+- visible YouTube video-card information such as titles, channel names, labels, and other text shown in recommendations or search results;
 - user-created filter preferences, including sensitivity settings, blur strength, custom keywords, and keyword exclusions.
 
 ## How this information is used
 
-This information is used only to determine whether a post matches the user's selected filtering rules and whether that post should be blurred or removed.
+This information is used only to determine whether visible Facebook or YouTube content matches the user's selected filtering rules and whether that content should be blurred or removed.
 
 ## Data collection and transmission
 
-No AI Feed does not send Facebook post text, media, media metadata, browsing activity, or extension settings to the developer.
+No AI Feed does not send Facebook post text, YouTube video-card text, media, media metadata, browsing activity, or extension settings to the developer.
 
 No AI Feed does not use third-party analytics, advertising SDKs, tracking services, or remote AI services.
 
-When metadata detection is enabled, the extension may request media directly from Facebook or Facebook's CDN so it can inspect embedded metadata locally in the browser. Media is not forwarded by the extension to the developer or another third party.
+When Facebook metadata detection is enabled, the extension may request media directly from Facebook or Facebook's CDN so it can inspect embedded metadata locally in the browser. Media is not forwarded by the extension to the developer or another third party.
+
+YouTube filtering uses visible page text. No AI Feed does not download YouTube video files, read transcripts, or analyze video frames.
 
 ## Local storage
 
@@ -31,7 +34,7 @@ Extension preferences are stored locally using Chrome extension storage. They ar
 
 ## Image and video analysis
 
-No AI Feed does not perform pixel-level image analysis, computer vision, facial recognition, or visual AI classification.
+No AI Feed does not perform pixel-level image analysis, computer vision, facial recognition, visual AI classification, transcript analysis, or video-content recognition.
 
 ## Sale or sharing of data
 
@@ -43,7 +46,7 @@ Because the developer does not collect processed feed content or extension setti
 
 ## Future platform support
 
-If future versions add support for Instagram, X/Twitter, LinkedIn, Reddit, YouTube, or other platforms, this policy will be updated if the categories of information processed or the way information is handled changes.
+If future versions add support for Instagram, X/Twitter, LinkedIn, Reddit, or other platforms, this policy will be updated if the categories of information processed or the way information is handled changes.
 
 ## Changes to this policy
 
