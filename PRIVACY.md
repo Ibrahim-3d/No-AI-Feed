@@ -2,7 +2,7 @@
 
 **Effective date:** September 6, 2026
 
-No AI Feed is a Chrome extension that filters AI-related content from supported social feeds according to settings chosen by the user. Version 1.1.0 supports Facebook and YouTube.
+No AI Feed is a Chrome extension that filters content from supported social feeds according to settings chosen by the user. Version 1.2.0 supports Facebook and YouTube and includes personal filters for topics, phrases, creators, pages, and channels.
 
 ## Information processed by the extension
 
@@ -12,7 +12,8 @@ To provide filtering, No AI Feed may process the following information inside th
 - URLs of media displayed in Facebook posts;
 - metadata/provenance bytes contained in Facebook-hosted media when metadata detection is enabled;
 - visible YouTube video-card information such as titles, channel names, labels, and other text shown in recommendations or search results;
-- user-created filter preferences, including sensitivity settings, blur strength, custom keywords, and keyword exclusions.
+- visible creator, page, or channel names used to apply user-created source filters;
+- user-created filter preferences, including personal topic/phrase rules, creator/page/channel rules, exceptions, sensitivity settings, and blur strength.
 
 ## How this information is used
 
@@ -20,7 +21,7 @@ This information is used only to determine whether visible Facebook or YouTube c
 
 ## Data collection and transmission
 
-No AI Feed does not send Facebook post text, YouTube video-card text, media, media metadata, browsing activity, or extension settings to the developer.
+No AI Feed does not send Facebook post text, YouTube video-card text, creator/page/channel names, media, media metadata, browsing activity, or extension settings to the developer.
 
 No AI Feed does not use third-party analytics, advertising SDKs, tracking services, or remote AI services.
 
@@ -30,7 +31,7 @@ YouTube filtering uses visible page text. No AI Feed does not download YouTube v
 
 ## Local storage
 
-Extension preferences are stored locally using Chrome extension storage. They are used only to operate the extension on the user's device.
+Extension preferences and personal filter rules are stored locally using Chrome extension storage. They are used only to operate the extension on the user's device.
 
 ## Image and video analysis
 
@@ -42,7 +43,7 @@ No AI Feed does not sell user data. The developer does not receive user data fro
 
 ## Data retention and deletion
 
-Because the developer does not collect processed feed content or extension settings, the developer does not retain that information. Users can remove locally stored extension preferences by uninstalling the extension or clearing its extension data in Chrome.
+Because the developer does not collect processed feed content or extension settings, the developer does not retain that information. Users can remove locally stored extension preferences and personal filters by uninstalling the extension or clearing its extension data in Chrome.
 
 ## Future platform support
 
