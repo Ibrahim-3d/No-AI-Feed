@@ -14,14 +14,14 @@ const DEFAULTS = {
 
 const METADATA_LABELS = {
   1: ['Strict', 'Only explicit AI-generation provenance.'],
-  2: ['High confidence', 'Also detects metadata naming known AI generators.'],
+  2: ['High confidence', 'Also detects metadata naming known AI generators, including Higgsfield/Astra signals.'],
   3: ['Recommended', 'Includes creator/software fields and common generation metadata.'],
   4: ['Broad', 'Also accepts broader generative-AI metadata terms.'],
   5: ['Aggressive', 'Filters weak AI references found in metadata fields.']
 };
 
 const KEYWORD_LABELS = {
-  1: ['Core', 'AI itself + major assistants/companies such as ChatGPT, OpenAI, Claude and Gemini.'],
+  1: ['Core', 'Core AI + major tools and blocked topics such as ChatGPT, Higgsfield and Astra.'],
   2: ['Creators', 'Adds image/video generators such as Midjourney, Stable Diffusion, Sora and Runway.'],
   3: ['Technical', 'Adds LLMs, agents, ML, models, RAG, MCP and AI engineering terms.'],
   4: ['Industry', 'Adds AI infrastructure, chips, vector databases and AI product/startup terminology.'],
@@ -55,29 +55,44 @@ async function getActiveTab() {
   return tab;
 }
 
+function platformFromUrl(url = '') {
+  if (/^https:\/\/(?:www\.|web\.|m\.)?facebook\.com\//i.test(url)) return 'Facebook';
+  if (/^https:\/\/(?:www\.|m\.)?youtube\.com\//i.test(url)) return 'YouTube';
+  return null;
+}
+
 function setConnection(kind, text) {
   $('connectionDetail').textContent = text;
   $('connectionDot').className = `connection-dot ${kind}`;
 }
 
+function formatStats(stats, fallbackPlatform) {
+  const platform = stats?.platform || fallbackPlatform;
+  const count = Number(stats?.postCount || 0);
+  const filtered = Number(stats?.filteredCount || 0);
+  const singular = stats?.itemLabel || (platform === 'YouTube' ? 'video' : 'post');
+  const plural = count === 1 ? singular : `${singular}s`;
+  return { platform, count, filtered, singular, plural };
+}
+
 async function refreshConnection() {
   const tab = await getActiveTab();
-  if (!tab?.id || !/^https:\/\/(?:www\.|web\.|m\.)?facebook\.com\//i.test(tab.url || '')) {
-    setConnection('disconnected', 'Open Facebook in the current tab.');
+  const platform = platformFromUrl(tab?.url || '');
+  if (!tab?.id || !platform) {
+    setConnection('disconnected', 'Open Facebook or YouTube in the current tab.');
     return;
   }
 
   try {
     const stats = await chrome.tabs.sendMessage(tab.id, { type: 'NO_AI_FEED_STATS' });
-    const posts = Number(stats?.postCount || 0);
-    const filtered = Number(stats?.filteredCount || 0);
-    if (posts > 0) {
-      setConnection('connected', `${posts} feed post${posts === 1 ? '' : 's'} detected · ${filtered} filtered`);
+    const info = formatStats(stats, platform);
+    if (info.count > 0) {
+      setConnection('connected', `${info.platform} · ${info.count} ${info.plural} detected · ${info.filtered} filtered`);
     } else {
-      setConnection('checking', 'Connected, but no feed posts are visible yet. Scroll or open Home.');
+      setConnection('checking', `${info.platform} connected, but no filterable items are visible yet.`);
     }
   } catch {
-    setConnection('disconnected', 'Reload this Facebook tab once to activate the extension.');
+    setConnection('disconnected', `Reload this ${platform} tab once to activate the extension.`);
   }
 }
 
@@ -127,17 +142,17 @@ async function save() {
 
 async function rescan() {
   const tab = await getActiveTab();
-  if (!tab?.id) return;
+  const platform = platformFromUrl(tab?.url || '');
+  if (!tab?.id || !platform) return;
   try {
     const stats = await chrome.tabs.sendMessage(tab.id, { type: 'NO_AI_FEED_RESCAN' });
     $('status').textContent = 'Rescanned';
-    const posts = Number(stats?.postCount || 0);
-    const filtered = Number(stats?.filteredCount || 0);
-    if (posts > 0) setConnection('connected', `${posts} feed post${posts === 1 ? '' : 's'} detected · ${filtered} filtered`);
-    else setConnection('checking', 'Connected, but no feed posts are visible yet. Scroll or open Home.');
+    const info = formatStats(stats, platform);
+    if (info.count > 0) setConnection('connected', `${info.platform} · ${info.count} ${info.plural} detected · ${info.filtered} filtered`);
+    else setConnection('checking', `${info.platform} connected, but no filterable items are visible yet.`);
   } catch {
-    $('status').textContent = 'Reload Facebook';
-    setConnection('disconnected', 'Reload this Facebook tab once to activate the extension.');
+    $('status').textContent = `Reload ${platform}`;
+    setConnection('disconnected', `Reload this ${platform} tab once to activate the extension.`);
   }
 }
 
