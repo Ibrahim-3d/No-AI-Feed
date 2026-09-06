@@ -11,7 +11,7 @@
     <header>
       <div>
         <h1>No AI Feed</h1>
-        <p>Clean up your Facebook feed</p>
+        <p>Clean up Facebook & YouTube</p>
       </div>
       <label class="switch" aria-label="Turn No AI Feed on or off">
         <input id="enabled" type="checkbox" />
@@ -21,7 +21,7 @@
 
     <section class="card diagnostic-card">
       <div class="diagnostic-row">
-        <span><b>Facebook connection</b><small id="connectionDetail">Checking current tab…</small></span>
+        <span><b>Current site</b><small id="connectionDetail">Checking current tab…</small></span>
         <span id="connectionDot" class="connection-dot checking" aria-hidden="true"></span>
       </div>
     </section>
@@ -29,15 +29,15 @@
     <section class="card">
       <h2>What should I detect?</h2>
       <label class="toggle-row">
-        <span><b>Facebook AI labels</b><small>Posts marked “AI info”, “Made with AI”, etc.</small></span>
+        <span><b>Facebook AI labels</b><small>Facebook only · “AI info”, “Made with AI”, etc.</small></span>
         <input id="detectLabels" type="checkbox" />
       </label>
       <label class="toggle-row">
-        <span><b>Media metadata</b><small>AI provenance stored inside the media file.</small></span>
+        <span><b>Media metadata</b><small>Facebook media · AI provenance stored inside the file.</small></span>
         <input id="detectMetadata" type="checkbox" />
       </label>
       <label class="toggle-row">
-        <span><b>AI topics & keywords</b><small>Hide posts talking about AI, tools, models or cloud topics.</small></span>
+        <span><b>AI topics & keywords</b><small>Facebook + YouTube · hide AI tools, models and topics.</small></span>
         <input id="detectKeywords" type="checkbox" />
       </label>
     </section>
@@ -64,7 +64,7 @@
       <details>
         <summary>Customize keywords</summary>
         <label for="customKeywords" class="field-label">Always filter these</label>
-        <textarea id="customKeywords" rows="4" placeholder="One phrase per line&#10;e.g. Manus AI"></textarea>
+        <textarea id="customKeywords" rows="5" placeholder="One phrase per line&#10;e.g. Higgsfield&#10;e.g. Astra"></textarea>
         <label for="excludedKeywords" class="field-label">Never filter these</label>
         <textarea id="excludedKeywords" rows="3" placeholder="One phrase per line&#10;e.g. cloud photography"></textarea>
         <p class="hint">Exclusions override the built-in and custom keyword lists.</p>
@@ -95,12 +95,12 @@
 
     <section class="privacy-note" aria-label="Privacy">
       <b>Private by design</b>
-      <span>Filtering runs in your browser. No post text, media, metadata, or settings are sent to us.</span>
+      <span>Filtering runs in your browser. No post text, video titles, media, metadata, or settings are sent to us.</span>
     </section>
 
     <footer>
       <span id="status">Saved automatically</span>
-      <button id="rescan" type="button">Rescan Facebook</button>
+      <button id="rescan" type="button">Rescan page</button>
     </footer>
   </main>
   <script src="popup.js"></script>
