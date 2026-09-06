@@ -4,6 +4,35 @@ const CACHE_LIMIT = 400;
 const MAX_SCAN_BYTES = 2 * 1024 * 1024;
 const cache = new Map();
 
+const DEFAULT_BLOCKED_TOPICS = [
+  'higgsfield',
+  'higgsfield ai',
+  'highsefield',
+  'astra',
+  'project astra',
+  'gpt-6 astra',
+  'gpt 6 astra',
+  '3d jutsu',
+  'genjutsu'
+];
+
+async function ensureDefaultBlockedTopics() {
+  try {
+    const { customKeywords = [] } = await chrome.storage.local.get({ customKeywords: [] });
+    const existing = new Set(customKeywords.map((value) => String(value).trim().toLowerCase()).filter(Boolean));
+    const merged = [...customKeywords];
+    for (const topic of DEFAULT_BLOCKED_TOPICS) {
+      if (!existing.has(topic.toLowerCase())) merged.push(topic);
+    }
+    if (merged.length !== customKeywords.length) await chrome.storage.local.set({ customKeywords: merged });
+  } catch {
+    // Settings migration is best effort; filtering still works with built-in lists.
+  }
+}
+
+chrome.runtime.onInstalled.addListener(() => { void ensureDefaultBlockedTopics(); });
+void ensureDefaultBlockedTopics();
+
 const SIGNALS = [
   {
     level: 1,
@@ -24,7 +53,9 @@ const SIGNALS = [
       /openai[^\x00]{0,60}(?:image|generator|sora)/i, /adobe firefly/i,
       /comfyui/i, /automatic1111/i, /fooocus/i, /leonardo ai/i,
       /ideogram/i, /runway[^\x00]{0,30}(?:gen|ml)/i, /kling ai/i,
-      /luma dream machine/i, /flux(?:\.1)?[^\x00]{0,30}(?:ai|model|generator)/i
+      /luma dream machine/i, /flux(?:\.1)?[^\x00]{0,30}(?:ai|model|generator)/i,
+      /higgsfield/i, /highsefield/i, /gpt[- ]?6[^\x00]{0,40}astra/i,
+      /project astra/i, /3d jutsu/i, /genjutsu/i
     ]
   },
   {
@@ -55,7 +86,7 @@ const SIGNALS = [
     reason: 'Metadata contains a broad AI-related marker',
     patterns: [
       /(?:CreatorTool|Software|Description|Comment|XMP)[^\x00]{0,120}\bAI\b/i,
-      /(?:CreatorTool|Software|Description|Comment)[^\x00]{0,120}\b(?:ChatGPT|Claude|Gemini|Copilot)\b/i
+      /(?:CreatorTool|Software|Description|Comment)[^\x00]{0,120}\b(?:ChatGPT|Claude|Gemini|Copilot|Astra)\b/i
     ]
   }
 ];
@@ -89,7 +120,6 @@ function metadataSegments(buffer, contentType = '') {
   const view = new DataView(buffer);
   const chunks = [];
 
-  // JPEG: scan metadata-bearing APP markers until the image scan begins.
   if (bytes[0] === 0xff && bytes[1] === 0xd8) {
     let p = 2;
     while (p + 4 <= bytes.length) {
@@ -107,7 +137,6 @@ function metadataSegments(buffer, contentType = '') {
     return chunks;
   }
 
-  // PNG: only inspect textual/provenance/EXIF chunks. Never inspect IDAT pixels.
   const isPng = bytes.length >= 8 && bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47;
   if (isPng) {
     let p = 8;
@@ -124,7 +153,6 @@ function metadataSegments(buffer, contentType = '') {
     return chunks;
   }
 
-  // WebP: inspect EXIF/XMP chunks, never VP8 pixel chunks.
   const isWebp = bytes.length >= 12 && ascii(bytes.slice(0, 4)) === 'RIFF' && ascii(bytes.slice(8, 12)) === 'WEBP';
   if (isWebp) {
     let p = 12;
@@ -139,8 +167,6 @@ function metadataSegments(buffer, contentType = '') {
     return chunks;
   }
 
-  // MP4/other containers: scan only the downloaded header range for metadata text.
-  // This is byte/string provenance inspection; no codec or pixel decoding occurs.
   if (/video|mp4|quicktime/i.test(contentType)) chunks.push(bytes);
   return chunks;
 }
