@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "No AI Feed",
-  "version": "1.1.0",
-  "description": "Filter AI-related content on Facebook and YouTube using platform labels, media metadata, and customizable keywords. Blur or remove matches.",
+  "version": "1.2.0",
+  "description": "Filter AI content, topics, creators, pages and channels on Facebook and YouTube. Blur or remove matches with customizable rules.",
   "permissions": [
     "storage",
     "activeTab"
@@ -32,10 +32,12 @@
         "https://m.facebook.com/*"
       ],
       "js": [
-        "src/content.js"
+        "src/content.js",
+        "src/personal-filter.js"
       ],
       "css": [
-        "src/content.css"
+        "src/content.css",
+        "src/personal-filter.css"
       ],
       "run_at": "document_idle"
     },
@@ -46,10 +48,12 @@
         "https://youtube.com/*"
       ],
       "js": [
-        "src/youtube.js"
+        "src/youtube.js",
+        "src/personal-filter.js"
       ],
       "css": [
-        "src/content.css"
+        "src/content.css",
+        "src/personal-filter.css"
       ],
       "run_at": "document_idle"
     }
