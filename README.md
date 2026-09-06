@@ -2,14 +2,14 @@
 
 # No AI Feed
 
-### Hide AI content from Facebook and YouTube.
+### Hide AI — or anything else you don’t want — from Facebook and YouTube.
 
-A free Chrome extension that filters **AI-generated posts, AI tools, AI news, ChatGPT content, Higgsfield, Astra and other AI topics** from your feeds.
+A free Chrome extension that can filter **AI content, unwanted topics, creators, Facebook pages and YouTube channels** from your feeds.
 
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](#install-in-60-seconds)
 [![Facebook](https://img.shields.io/badge/Works%20on-Facebook-1877F2?logo=facebook&logoColor=white)](#)
 [![YouTube](https://img.shields.io/badge/Works%20on-YouTube-FF0000?logo=youtube&logoColor=white)](#)
-[![Manifest V3](https://img.shields.io/badge/Manifest-V3-5f6368)](./manifest.json)
+[![Version](https://img.shields.io/badge/version-1.2.0-6f42c1)](./manifest.json)
 [![Privacy](https://img.shields.io/badge/Privacy-Local%20Only-2ea44f)](./PRIVACY.md)
 [![GitHub Stars](https://img.shields.io/github/stars/Ibrahim-3d/No-AI-Feed?style=flat&logo=github)](https://github.com/Ibrahim-3d/No-AI-Feed/stargazers)
 
@@ -36,28 +36,48 @@ Then click the **No AI Feed** extension icon and choose what you want hidden.
 > Already had Facebook or YouTube open while installing? Refresh that tab once so the extension can start filtering.
 
 <div align="center">
-  <img src="./assets/no-ai-feed-facebook-ai-filter.png" alt="No AI Feed Chrome extension filtering AI content on Facebook" width="900">
+  <img src="./assets/no-ai-feed-facebook-ai-filter.png" alt="No AI Feed Chrome extension filtering AI content and unwanted topics on Facebook" width="900">
 </div>
 
 ---
 
-## What it filters
+## Hide whatever you don’t want to see
+
+No AI Feed now includes **personal filters**.
+
+Add a rule, choose what kind it is, and it works across your supported feeds.
+
+| Rule | Example | What happens |
+| --- | --- | --- |
+| **Topic / phrase** | `crypto`, `football transfers`, `politics` | Hides posts and videos that mention it |
+| **Creator / page / channel** | `MrBeast`, a Facebook page, a YouTube channel | Hides content from that source |
+| **Never hide exception** | `cloud photography` | Keeps matching content visible even if another text rule matches |
+
+Your personal rules work **even if you turn the built-in AI topic filter off**.
+
+When No AI Feed can identify the page or channel you are currently viewing, it can also offer a **Block current creator/page/channel** shortcut.
+
+---
+
+## Built-in AI filtering
+
+No AI Feed still includes its original AI-focused filters:
 
 | | Filter | What it can hide |
 | --- | --- | --- |
 | 🏷️ | **Facebook AI labels** | Posts Meta identifies as AI-generated |
 | 📄 | **Media metadata** | AI-generation information stored in supported Facebook media |
-| 🔤 | **Keywords & topics** | Facebook posts and YouTube videos mentioning AI tools, models or topics |
+| 🔤 | **Built-in AI topics** | Facebook posts and YouTube videos mentioning AI tools, models or related topics |
 
 Built-in filtering includes **ChatGPT, OpenAI, Claude, Gemini, Midjourney, Sora, Higgsfield, Astra, GPT-6 Astra, 3D Jutsu, Genjutsu** and many more AI-related terms.
 
-Use one filter or combine them.
+Adjust the sensitivity from focused AI filtering to much broader adjacent technology terms.
 
 ---
 
 ## YouTube support
 
-No AI Feed can now filter matching videos from:
+No AI Feed can filter matching videos from:
 
 - Home recommendations
 - Search results
@@ -65,22 +85,18 @@ No AI Feed can now filter matching videos from:
 - Watch-page recommendations
 - Shorts cards
 
-It checks the visible video card information such as the **title, channel name and visible metadata**. It does not read transcripts or analyze the video itself.
+It checks visible card information such as the **title, channel name and visible text**. It does not read transcripts or analyze the video itself.
 
 ---
 
-## Your feed, your rules
+## Blur it or remove it
 
-You decide how aggressive the filter should be.
+Choose what happens when something matches:
 
-- **Sensitivity slider** — from obvious AI content to broader AI-related topics.
-- **Custom keywords** — add anything you never want to see.
-- **Exceptions** — keep specific words or topics visible.
-- **Blur mode** — hide content but keep the option to reveal it.
-- **Remove mode** — completely remove matching content from the feed.
+- **Blur** — hide the content but keep a button to reveal it.
+- **Remove** — remove it completely from the feed.
 - **Blur strength** — choose how strong the blur should be.
-
-No AI Feed does **not** analyze image pixels or use computer vision.
+- **Show why** — see which topic, creator, label or keyword caused the filter.
 
 ---
 
@@ -89,8 +105,8 @@ No AI Feed does **not** analyze image pixels or use computer vision.
 Filtering happens locally in your browser.
 
 - Your Facebook posts and YouTube video-card text are **not sent to us**.
+- Your personal topic/creator rules stay **on your device**.
 - Your media is **not uploaded to us**.
-- Your keywords and settings stay **on your device**.
 - No analytics, ad trackers or external AI services.
 
 [Read the Privacy Policy →](./PRIVACY.md)
@@ -108,20 +124,23 @@ Filtering happens locally in your browser.
 | LinkedIn | ⏳ Planned |
 | Reddit | ⏳ Planned |
 
-The goal is simple: **one AI content filter for all your social feeds.**
+The longer-term goal is **one personal feed filter across all your social platforms**.
 
 ---
 
 ## FAQ
 
+### Can I block a specific creator, Facebook page or YouTube channel?
+Yes. Add it as a **Creator / page / channel** rule. Content from matching sources will be blurred or removed according to your settings.
+
+### Can I hide a topic that has nothing to do with AI?
+Yes. Personal topic rules can filter any visible topic or phrase — for example crypto, a TV show, politics, football transfers or anything else you do not want in your feed.
+
 ### Can it block Higgsfield and Astra content?
-Yes. Higgsfield, Astra, GPT-6 Astra, 3D Jutsu and related terms are included in the default blocked topics. You can remove or add keywords from the extension settings.
+Yes. Higgsfield, Astra, GPT-6 Astra, 3D Jutsu and related terms are included in the built-in AI topic list.
 
 ### Can I hide AI videos on YouTube?
 Yes. No AI Feed filters matching video cards on YouTube Home, search results, subscriptions, channel pages, recommendations and Shorts.
-
-### How do I hide AI posts on Facebook?
-Install No AI Feed, enable the filters you want, and choose **Blur** or **Remove**. The extension can detect Facebook AI labels, supported media metadata and AI-related keywords.
 
 ### Is No AI Feed an AI image detector?
 No. It does not scan image pixels, read video transcripts or use AI vision. It filters using platform labels, supported metadata and visible text rules.
