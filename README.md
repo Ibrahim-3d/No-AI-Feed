@@ -9,7 +9,7 @@ A Chrome extension that can filter **AI content, unwanted topics, creators, Face
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](#install-in-60-seconds)
 [![Facebook](https://img.shields.io/badge/Works%20on-Facebook-1877F2?logo=facebook&logoColor=white)](#)
 [![YouTube](https://img.shields.io/badge/Works%20on-YouTube-FF0000?logo=youtube&logoColor=white)](#)
-[![Version](https://img.shields.io/badge/version-1.3.0-6f42c1)](./manifest.json)
+[![Version](https://img.shields.io/badge/version-1.3.1-6f42c1)](./manifest.json)
 [![Privacy](https://img.shields.io/badge/Privacy-Local%20Only-2ea44f)](./PRIVACY.md)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](./LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Ibrahim-3d/No-AI-Feed?style=flat&logo=github)](https://github.com/Ibrahim-3d/No-AI-Feed/stargazers)
