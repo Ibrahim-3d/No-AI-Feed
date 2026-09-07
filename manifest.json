@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "No AI Feed",
-  "version": "1.2.0",
-  "description": "Filter AI content, topics, creators, pages and channels on Facebook and YouTube. Blur or remove matches with customizable rules.",
+  "version": "1.3.0",
+  "description": "Filter AI content, topics, creators, pages and channels on Facebook and YouTube with customizable rules, bilingual UI, blur or hide controls.",
   "permissions": [
     "storage",
     "activeTab"
