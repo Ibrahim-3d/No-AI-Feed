@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,126 +7,189 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <main>
-    <header>
-      <div>
-        <h1>No AI Feed</h1>
-        <p>Clean up Facebook & YouTube</p>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3.25a8.75 8.75 0 1 1-6.19 2.56A8.72 8.72 0 0 1 12 3.25Z" />
+            <path d="m5.8 5.8 12.4 12.4" />
+            <path d="M13.9 7.1 15 9.7l2.65 1.1L15 11.9 13.9 14.5l-1.1-2.6-2.65-1.1 2.65-1.1 1.1-2.6Z" />
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <h1>No AI Feed</h1>
+          <span data-i18n="brandSubtitle">Your feed, your rules</span>
+        </div>
       </div>
-      <label class="switch" aria-label="Turn No AI Feed on or off">
-        <input id="enabled" type="checkbox" />
-        <span></span>
-      </label>
+
+      <div class="top-actions">
+        <button id="languageToggle" class="language-button" type="button" aria-label="Switch language">AR</button>
+        <label class="master-switch" aria-label="Turn No AI Feed on or off">
+          <input id="enabled" type="checkbox" />
+          <span class="master-track"><span class="master-thumb"></span></span>
+        </label>
+      </div>
     </header>
 
-    <section class="card diagnostic-card">
-      <div class="diagnostic-row">
-        <span><b>Current site</b><small id="connectionDetail">Checking current tab…</small></span>
-        <span id="connectionDot" class="connection-dot checking" aria-hidden="true"></span>
-      </div>
-    </section>
-
-    <section class="card personal-card">
-      <div class="section-head">
-        <div>
-          <h2>Hide what you don’t want</h2>
-          <p class="hint top-hint">Block any topic, phrase, creator, Facebook page or YouTube channel.</p>
+    <div class="scroll-area">
+      <section class="status-card" aria-live="polite">
+        <div class="status-symbol">
+          <span id="connectionDot" class="connection-dot checking"></span>
         </div>
-        <span id="ruleCount" class="count-pill">0 rules</span>
-      </div>
-
-      <div class="rule-builder">
-        <select id="ruleType" aria-label="Filter type">
-          <option value="topic">Topic / phrase</option>
-          <option value="source">Creator / page / channel</option>
-        </select>
-        <div class="rule-input-row">
-          <input id="ruleValue" type="text" maxlength="120" autocomplete="off" placeholder="e.g. crypto, football transfers, politics" />
-          <button id="addRule" type="button">Add</button>
+        <div class="status-copy">
+          <span class="eyebrow" data-i18n="currentSite">Current site</span>
+          <strong id="connectionDetail" data-i18n="checkingTab">Checking current tab…</strong>
         </div>
-        <small id="ruleHelp">Hide any post or video that mentions this topic or phrase.</small>
-      </div>
+        <button id="rescan" class="icon-button" type="button" data-i18n-aria="rescan" title="Rescan page">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 11a8 8 0 1 0 2 5.25" />
+            <path d="M20 4v7h-7" />
+          </svg>
+        </button>
+      </section>
 
-      <button id="quickBlockSource" class="secondary-button quick-source" type="button" hidden></button>
-
-      <div id="ruleList" class="rule-list" aria-live="polite"></div>
-
-      <details class="exceptions">
-        <summary>Never hide exceptions</summary>
-        <label for="excludedKeywords" class="field-label">Always allow when these words appear</label>
-        <textarea id="excludedKeywords" rows="3" placeholder="One phrase per line&#10;e.g. cloud photography"></textarea>
-        <p class="hint">Exceptions override your personal topic and creator rules, and the built-in AI topic list.</p>
-      </details>
-    </section>
-
-    <section class="card">
-      <h2>Built-in AI detection</h2>
-      <label class="toggle-row">
-        <span><b>Facebook AI labels</b><small>Facebook only · “AI info”, “Made with AI”, etc.</small></span>
-        <input id="detectLabels" type="checkbox" />
-      </label>
-      <label class="toggle-row">
-        <span><b>Media metadata</b><small>Facebook media · AI provenance stored inside the file.</small></span>
-        <input id="detectMetadata" type="checkbox" />
-      </label>
-      <label class="toggle-row">
-        <span><b>Built-in AI topics</b><small>Facebook + YouTube · ChatGPT, Higgsfield, Astra, AI tools, models and related topics.</small></span>
-        <input id="detectKeywords" type="checkbox" />
-      </label>
-    </section>
-
-    <section id="metadataControls" class="card">
-      <div class="section-head">
-        <label for="detectionSensitivity">Metadata sensitivity</label>
-        <output id="detectionSensitivityValue"></output>
-      </div>
-      <input id="detectionSensitivity" class="range" type="range" min="1" max="5" step="1" />
-      <div class="range-ends"><span>Strict</span><span>Aggressive</span></div>
-      <p id="metadataHint" class="hint"></p>
-    </section>
-
-    <section id="keywordControls" class="card">
-      <div class="section-head">
-        <label for="keywordSensitivity">Built-in AI coverage</label>
-        <output id="keywordSensitivityValue"></output>
-      </div>
-      <input id="keywordSensitivity" class="range" type="range" min="1" max="5" step="1" />
-      <div class="range-ends"><span>Core AI only</span><span>Everything adjacent</span></div>
-      <p id="keywordHint" class="hint"></p>
-    </section>
-
-    <section class="card">
-      <h2>When something is detected</h2>
-      <div class="segmented" role="group" aria-label="Filter behavior">
-        <label><input type="radio" name="behavior" value="blur" /><span>Blur it</span></label>
-        <label><input type="radio" name="behavior" value="remove" /><span>Remove it</span></label>
-      </div>
-
-      <div id="blurControls" class="subcontrol">
-        <div class="section-head">
-          <label for="blurStrength">Blur strength</label>
-          <output id="blurStrengthValue"></output>
+      <section class="panel ai-panel">
+        <div class="panel-heading">
+          <div class="heading-icon accent" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="m12 3 1.45 4.05L17.5 8.5l-4.05 1.45L12 14l-1.45-4.05L6.5 8.5l4.05-1.45L12 3Z" />
+              <path d="m18.5 14 .9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6Z" />
+            </svg>
+          </div>
+          <div class="heading-copy">
+            <h2 data-i18n="aiFilter">AI filter</h2>
+            <p data-i18n="aiFilterDesc">Hide AI tools, models and generated-content signals.</p>
+          </div>
+          <label class="mini-switch" aria-label="AI topics and keywords">
+            <input id="detectKeywords" type="checkbox" />
+            <span></span>
+          </label>
         </div>
-        <input id="blurStrength" class="range" type="range" min="2" max="40" step="1" />
-        <div class="range-ends"><span>Soft</span><span>Opaque</span></div>
-      </div>
 
-      <label class="toggle-row compact">
-        <span><b>Show why it was filtered</b></span>
-        <input id="showReason" type="checkbox" />
-      </label>
-    </section>
+        <div id="keywordControls" class="control-body">
+          <div class="slider-head">
+            <label for="keywordSensitivity" data-i18n="coverage">Coverage</label>
+            <output id="keywordSensitivityValue">Industry</output>
+          </div>
+          <input id="keywordSensitivity" class="range" type="range" min="1" max="5" step="1" />
+          <div class="range-ends"><span data-i18n="focused">Focused</span><span data-i18n="aggressive">Aggressive</span></div>
+          <p id="keywordHint" class="hint"></p>
+        </div>
 
-    <section class="privacy-note" aria-label="Privacy">
-      <b>Private by design</b>
-      <span>Your personal filter rules and feed content stay in your browser. Nothing is sent to us.</span>
-    </section>
+        <details class="advanced-block">
+          <summary>
+            <span class="summary-main">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M7 12h10M9 17h6" /></svg>
+              <span data-i18n="advancedDetection">Advanced detection</span>
+            </span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+          </summary>
 
-    <footer>
-      <span id="status">Saved automatically</span>
-      <button id="rescan" type="button">Rescan page</button>
+          <div class="advanced-content">
+            <label class="setting-row">
+              <span class="setting-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 7.5h14v9H5z" /><path d="M8 11h8M8 14h5" /></svg>
+              </span>
+              <span class="setting-copy"><b data-i18n="facebookLabels">Facebook AI labels</b><small data-i18n="facebookLabelsDesc">Uses labels such as “AI info” and “Made with AI”.</small></span>
+              <input id="detectLabels" type="checkbox" />
+            </label>
+
+            <label class="setting-row">
+              <span class="setting-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h8l4 4v13H6z" /><path d="M14 3.5v4h4M9 12h6M9 15h6" /></svg>
+              </span>
+              <span class="setting-copy"><b data-i18n="mediaMetadata">Media metadata</b><small data-i18n="mediaMetadataDesc">Checks supported Facebook media for AI provenance.</small></span>
+              <input id="detectMetadata" type="checkbox" />
+            </label>
+
+            <div id="metadataControls" class="metadata-slider">
+              <div class="slider-head compact"><label for="detectionSensitivity" data-i18n="metadataSensitivity">Metadata sensitivity</label><output id="detectionSensitivityValue">Recommended</output></div>
+              <input id="detectionSensitivity" class="range" type="range" min="1" max="5" step="1" />
+              <p id="metadataHint" class="hint"></p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel personal-panel">
+        <div class="panel-heading compact-heading">
+          <div class="heading-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M10 18h4" /></svg>
+          </div>
+          <div class="heading-copy">
+            <div class="title-line"><h2 data-i18n="myFilters">My filters</h2><span id="ruleCount" class="count-pill">0 rules</span></div>
+            <p data-i18n="myFiltersDesc">Hide any topic, phrase, creator, page or channel.</p>
+          </div>
+        </div>
+
+        <div class="rule-builder">
+          <select id="ruleType" aria-label="Filter type">
+            <option value="topic" data-i18n="topicPhrase">Topic / phrase</option>
+            <option value="source" data-i18n="creatorSource">Creator / page / channel</option>
+          </select>
+          <div class="rule-input-wrap">
+            <input id="ruleValue" type="text" autocomplete="off" maxlength="160" />
+            <button id="addRule" class="add-button" type="button" data-i18n-aria="addFilter" title="Add filter">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+            </button>
+          </div>
+          <p id="ruleHelp" class="hint rule-help"></p>
+        </div>
+
+        <button id="quickBlockSource" class="quick-source" type="button" hidden>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /><path d="m17.5 15.5 4 4M21.5 15.5l-4 4" /></svg>
+          <span id="quickBlockText"></span>
+        </button>
+
+        <div id="ruleList" class="rule-list"></div>
+
+        <details class="exceptions-block">
+          <summary><span data-i18n="exceptions">Exceptions</span><span class="summary-note" data-i18n="exceptionsNote">Never hide these</span><svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></summary>
+          <div class="exceptions-content">
+            <textarea id="excludedKeywords" rows="3"></textarea>
+            <p class="hint" data-i18n="exceptionsHelp">One phrase per line. Exceptions override built-in and personal filters.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel behavior-panel">
+        <div class="panel-heading compact-heading">
+          <div class="heading-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" /><path d="M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z" /></svg>
+          </div>
+          <div class="heading-copy"><h2 data-i18n="whenMatched">When something matches</h2><p data-i18n="whenMatchedDesc">Choose how filtered content should behave.</p></div>
+        </div>
+
+        <div class="segmented" role="group" aria-label="Filter behavior">
+          <label><input type="radio" name="behavior" value="blur" /><span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8h18M3 12h18M3 16h18" /></svg><b data-i18n="blur">Blur</b></span></label>
+          <label><input type="radio" name="behavior" value="remove" /><span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16" /></svg><b data-i18n="hideCompletely">Hide completely</b></span></label>
+        </div>
+
+        <div id="blurControls" class="blur-control">
+          <div class="slider-head compact"><label for="blurStrength" data-i18n="blurStrength">Blur strength</label><output id="blurStrengthValue">14px</output></div>
+          <input id="blurStrength" class="range" type="range" min="2" max="40" step="1" />
+        </div>
+
+        <label class="setting-row standalone">
+          <span class="setting-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 17h.01M9.75 9.75a2.25 2.25 0 1 1 3.8 1.63c-.9.83-1.55 1.25-1.55 2.62" /><circle cx="12" cy="12" r="9" /></svg></span>
+          <span class="setting-copy"><b data-i18n="showReason">Show why it was filtered</b><small data-i18n="showReasonDesc">Display the matching rule when content is blurred.</small></span>
+          <input id="showReason" type="checkbox" />
+        </label>
+      </section>
+
+      <section class="privacy-strip">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5.5 5.5v5.2c0 4.1 2.55 7.9 6.5 10.3 3.95-2.4 6.5-6.2 6.5-10.3V5.5L12 3Z" /><path d="m9 12 2 2 4-4" /></svg>
+        <div><b data-i18n="localOnly">Private by design</b><span data-i18n="localOnlyDesc">Filtering and preferences stay in your browser.</span></div>
+      </section>
+    </div>
+
+    <footer class="footer-bar">
+      <span id="status" data-i18n="savedAutomatically">Saved automatically</span>
+      <span class="version">v1.3.0</span>
     </footer>
   </main>
+
   <script src="popup.js"></script>
 </body>
 </html>
