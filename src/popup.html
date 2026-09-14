@@ -9,26 +9,14 @@
 <body>
   <main class="app-shell">
     <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="8.5" />
-            <path d="m6.2 6.2 11.6 11.6" />
-            <path d="m14.2 7.2 1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1 1-2.5Z" />
-          </svg>
-        </div>
-        <div class="brand-copy">
-          <h1>No AI Feed</h1>
-          <span data-i18n="brandSubtitle">Your feed, your rules</span>
-        </div>
+      <button id="languageToggle" class="language-button" type="button" aria-label="Switch language">AR</button>
+      <div class="brand" aria-label="No AI Feed">
+        <h1>No AI Feed</h1>
       </div>
-      <div class="top-actions">
-        <button id="languageToggle" class="language-button" type="button" aria-label="Switch language">AR</button>
-        <label class="master-switch" aria-label="Turn No AI Feed on or off">
-          <input id="enabled" type="checkbox" />
-          <span class="master-track"><span class="master-thumb"></span></span>
-        </label>
-      </div>
+      <label class="master-switch" aria-label="Turn No AI Feed on or off">
+        <input id="enabled" type="checkbox" />
+        <span class="master-track"><span class="master-thumb"></span></span>
+      </label>
     </header>
 
     <section id="primaryView" class="view primary-view">
@@ -48,36 +36,19 @@
       </div>
 
       <section class="panel ai-panel">
-        <div class="panel-heading">
-          <div class="heading-icon accent" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="m12 3 1.45 4.05L17.5 8.5l-4.05 1.45L12 14l-1.45-4.05L6.5 8.5l4.05-1.45L12 3Z" /><path d="m18.5 14 .9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6Z" /></svg>
-          </div>
-          <div class="heading-copy">
-            <h2 data-i18n="aiFilter">AI Filter</h2>
-            <p data-i18n="aiFilterDesc">Hide AI-generated content, tools, and signals.</p>
-          </div>
-          <label class="mini-switch" aria-label="AI topics and keywords">
-            <input id="detectKeywords" type="checkbox" />
-            <span></span>
-          </label>
+        <div class="section-title">
+          <span class="lang-en">Filter strength</span>
+          <span class="lang-ar">قوة الفلترة</span>
         </div>
-
         <div id="keywordControls" class="mode-grid" role="radiogroup" aria-label="AI filter strength">
           <button class="mode-option" type="button" data-level="2" role="radio" aria-checked="false">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 4c-7 1-12 5-13 12 4 0 8-2 10-6-1 4-4 7-8 9" /></svg>
             <span class="mode-title" data-i18n="focused">Focused</span>
-            <span class="mode-desc" data-i18n="focusedDesc">Minimal filtering</span>
           </button>
           <button class="mode-option" type="button" data-level="4" role="radio" aria-checked="true">
-            <span class="recommended" data-i18n="recommended">Recommended</span>
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M6 19l3-9m9 9-3-9M12 5v14M7.5 10h9M6 10l-2 5h4l-2-5Zm12 0-2 5h4l-2-5Z" /></svg>
             <span class="mode-title" data-i18n="balanced">Balanced</span>
-            <span class="mode-desc" data-i18n="balancedDesc">A cleaner feed</span>
           </button>
           <button class="mode-option" type="button" data-level="5" role="radio" aria-checked="false">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m13 2-7 11h6l-1 9 7-12h-6l1-8Z" /></svg>
             <span class="mode-title" data-i18n="aggressive">Aggressive</span>
-            <span class="mode-desc" data-i18n="aggressiveDesc">Maximum filtering</span>
           </button>
         </div>
         <input id="keywordSensitivity" type="range" min="1" max="5" step="1" hidden />
@@ -87,14 +58,14 @@
 
       <section class="panel filters-panel">
         <div class="filters-head">
-          <div class="heading-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M10 18h4" /></svg>
-          </div>
           <div class="filters-title">
             <h2 data-i18n="myFilters">My Filters</h2>
             <span id="ruleCount" class="count-pill">0 rules</span>
           </div>
-          <button id="manageFilters" class="manage-button" type="button"><span data-i18n="manage">Manage</span><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" /></svg></button>
+          <button id="manageFilters" class="manage-button" type="button">
+            <span data-i18n="manage">Manage</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" /></svg>
+          </button>
         </div>
 
         <div class="quick-add">
@@ -113,33 +84,53 @@
       </section>
 
       <section class="panel behavior-panel">
-        <div class="behavior-heading">
-          <div class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" /><path d="M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z" /></svg></div>
-          <div class="heading-copy"><h2 data-i18n="whenMatched">When something matches</h2><p data-i18n="whenMatchedDesc">Choose how filtered content should behave.</p></div>
-        </div>
+        <div class="section-title" data-i18n="whenMatched">When something matches</div>
         <div class="segmented" role="group" aria-label="Filter behavior">
-          <label><input type="radio" name="behavior" value="blur" /><span><svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16M6 12h12M8 16h8" /></svg><b data-i18n="blur">Blur</b></span></label>
-          <label><input type="radio" name="behavior" value="remove" /><span><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16" /></svg><b data-i18n="hideCompletely">Hide completely</b></span></label>
+          <label>
+            <input type="radio" name="behavior" value="blur" />
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16M6 12h12M8 16h8" /></svg><b data-i18n="blur">Blur</b></span>
+          </label>
+          <label>
+            <input type="radio" name="behavior" value="remove" />
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16" /></svg><b data-i18n="hideCompletely">Hide completely</b></span>
+          </label>
         </div>
+        <label class="reason-toggle">
+          <input id="showReason" type="checkbox" />
+          <span class="reason-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" /></svg></span>
+          <span class="lang-en">Explain filtered content</span>
+          <span class="lang-ar">وضّح سبب فلترة المحتوى</span>
+        </label>
       </section>
 
-      <a class="privacy-strip" href="https://github.com/Ibrahim-3d/No-AI-Feed/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5.5 5.5v5.2c0 4.1 2.55 7.9 6.5 10.3 3.95-2.4 6.5-6.2 6.5-10.3V5.5L12 3Z" /><path d="m9 12 2 2 4-4" /></svg>
-        <div><b data-i18n="localOnly">Private by design</b><span data-i18n="localOnlyDesc">Filtering stays in your browser.</span></div>
-        <svg class="row-chevron" viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" /></svg>
-      </a>
+      <button id="openAdvancedSettings" class="advanced-entry" type="button">
+        <span class="advanced-entry-main">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M8 14v6" /></svg>
+          <span class="lang-en">Advanced settings</span>
+          <span class="lang-ar">الإعدادات المتقدمة</span>
+        </span>
+        <svg class="row-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </button>
 
-      <section class="support-card">
-        <div class="support-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 8h9v10a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3V8Z" /><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M8.5 5.5c0-1 1-1.4 1-2.5M12 5.5c0-1 1-1.4 1-2.5" /></svg></div>
-        <div class="support-copy"><b data-i18n="supportTitle">Support No AI Feed</b><span data-i18n="supportDesc">Help keep the web a more human place.</span></div>
-        <button id="supportButton" class="support-button" type="button"><svg viewBox="0 0 24 24" fill="none"><path d="M20.8 5.8a5.3 5.3 0 0 0-7.5 0L12 7.1l-1.3-1.3a5.3 5.3 0 0 0-7.5 7.5L12 22l8.8-8.7a5.3 5.3 0 0 0 0-7.5Z" /></svg><span data-i18n="supportButton">Buy me a coffee</span></button>
-      </section>
-
-      <footer class="footer-links">
-        <a href="https://github.com/Ibrahim-3d/No-AI-Feed" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-4 1.2-4-2-5-2m10 4v-3.1c0-.9.3-1.7.8-2.3 2.6-.3 5.2-1.3 5.2-5.7A4.5 4.5 0 0 0 18.8 7a4.2 4.2 0 0 0-.1-3S17.7 3.7 15 5a10.2 10.2 0 0 0-6 0C6.3 3.7 5.3 4 5.3 4a4.2 4.2 0 0 0-.1 3A4.5 4.5 0 0 0 4 9.9c0 4.4 2.6 5.4 5.2 5.7.5.6.8 1.4.8 2.3V21" /></svg><span>GitHub</span></a>
-        <a href="https://github.com/Ibrahim-3d/No-AI-Feed/issues" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" /></svg><span data-i18n="feedback">Feedback</span></a>
-        <a href="https://github.com/Ibrahim-3d/No-AI-Feed/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5.5 5.5v5.2c0 4.1 2.55 7.9 6.5 10.3 3.95-2.4 6.5-6.2 6.5-10.3V5.5L12 3Z" /></svg><span data-i18n="privacy">Privacy</span></a>
-        <span class="version">v1.3.1</span>
+      <footer class="utility-footer">
+        <a class="utility-icon" href="https://github.com/Ibrahim-3d/No-AI-Feed" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-4 1.2-4-2-5-2m10 4v-3.1c0-.9.3-1.7.8-2.3 2.6-.3 5.2-1.3 5.2-5.7A4.5 4.5 0 0 0 18.8 7a4.2 4.2 0 0 0-.1-3S17.7 3.7 15 5a10.2 10.2 0 0 0-6 0C6.3 3.7 5.3 4 5.3 4a4.2 4.2 0 0 0-.1 3A4.5 4.5 0 0 0 4 9.9c0 4.4 2.6 5.4 5.2 5.7.5.6.8 1.4.8 2.3V21" /></svg>
+        </a>
+        <a class="utility-icon" href="https://github.com/Ibrahim-3d/No-AI-Feed/issues" target="_blank" rel="noopener noreferrer" aria-label="Feedback" title="Feedback">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" /></svg>
+        </a>
+        <button id="supportButton" class="support-button" type="button">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 8h9v10a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3V8Z" /><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></svg>
+          <span data-i18n="supportTitle">Support No AI Feed</span>
+        </button>
+        <a class="utility-icon" href="https://github.com/Ibrahim-3d/No-AI-Feed/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer" aria-label="Privacy" title="Privacy">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5.5 5.5v5.2c0 4.1 2.55 7.9 6.5 10.3 3.95-2.4 6.5-6.2 6.5-10.3V5.5L12 3Z" /></svg>
+        </a>
+        <div class="local-status" aria-label="Local filtering" title="Local filtering">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5.5 5.5v5.2c0 4.1 2.55 7.9 6.5 10.3 3.95-2.4 6.5-6.2 6.5-10.3V5.5L12 3Z" /><path d="m9 12 2 2 4-4" /></svg>
+          <span class="lang-en">Local</span>
+          <span class="lang-ar">محلي</span>
+        </div>
       </footer>
     </section>
 
@@ -169,17 +160,18 @@
       </div>
 
       <div id="advancedTabPanel" class="manage-panel" role="tabpanel" hidden>
+        <label class="advanced-row"><div><b data-i18n="aiFilter">AI Filter</b><span data-i18n="aiFilterDesc">Hide AI-generated content, tools, and signals.</span></div><input id="detectKeywords" type="checkbox" /></label>
         <label class="advanced-row"><div><b data-i18n="facebookLabels">Facebook AI labels</b><span data-i18n="facebookLabelsDesc">Uses labels such as “AI info” and “Made with AI”.</span></div><input id="detectLabels" type="checkbox" /></label>
         <label class="advanced-row"><div><b data-i18n="mediaMetadata">Media metadata</b><span data-i18n="mediaMetadataDesc">Checks supported Facebook media for AI provenance.</span></div><input id="detectMetadata" type="checkbox" /></label>
         <div id="metadataControls" class="advanced-slider"><div><label for="detectionSensitivity" data-i18n="metadataSensitivity">Metadata sensitivity</label><output id="detectionSensitivityValue">Recommended</output></div><input id="detectionSensitivity" class="range" type="range" min="1" max="5" step="1" /><p id="metadataHint" class="hint"></p></div>
         <div class="advanced-slider"><div><label for="keywordSensitivityAdvanced" data-i18n="aiCoverage">AI filter coverage</label><output id="keywordSensitivityAdvancedValue">Industry</output></div><input id="keywordSensitivityAdvanced" class="range" type="range" min="1" max="5" step="1" /></div>
         <div class="advanced-slider"><div><label for="blurStrength" data-i18n="blurStrength">Blur strength</label><output id="blurStrengthValue">14px</output></div><input id="blurStrength" class="range" type="range" min="2" max="40" step="1" /></div>
-        <label class="advanced-row compact-row"><div><b data-i18n="showReason">Show why it was filtered</b><span data-i18n="showReasonDesc">Display the matching rule when content is blurred.</span></div><input id="showReason" type="checkbox" /></label>
       </div>
     </section>
 
     <div id="status" class="toast" role="status" aria-live="polite"></div>
   </main>
   <script src="popup.js"></script>
+  <script src="popup-ui.js"></script>
 </body>
 </html>
