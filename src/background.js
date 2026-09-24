@@ -4,35 +4,6 @@ const CACHE_LIMIT = 400;
 const MAX_SCAN_BYTES = 2 * 1024 * 1024;
 const cache = new Map();
 
-const DEFAULT_BLOCKED_TOPICS = [
-  'higgsfield',
-  'higgsfield ai',
-  'highsefield',
-  'astra',
-  'project astra',
-  'gpt-6 astra',
-  'gpt 6 astra',
-  '3d jutsu',
-  'genjutsu'
-];
-
-async function ensureDefaultBlockedTopics() {
-  try {
-    const { customKeywords = [] } = await chrome.storage.local.get({ customKeywords: [] });
-    const existing = new Set(customKeywords.map((value) => String(value).trim().toLowerCase()).filter(Boolean));
-    const merged = [...customKeywords];
-    for (const topic of DEFAULT_BLOCKED_TOPICS) {
-      if (!existing.has(topic.toLowerCase())) merged.push(topic);
-    }
-    if (merged.length !== customKeywords.length) await chrome.storage.local.set({ customKeywords: merged });
-  } catch {
-    // Settings migration is best effort; filtering still works with built-in lists.
-  }
-}
-
-chrome.runtime.onInstalled.addListener(() => { void ensureDefaultBlockedTopics(); });
-void ensureDefaultBlockedTopics();
-
 const SIGNALS = [
   {
     level: 1,
@@ -188,33 +159,60 @@ function analyzeMetadataText(text, sensitivity) {
   return { match: false };
 }
 
+function allowedMediaUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && !url.username && !url.password &&
+      (url.hostname === 'fbcdn.net' || url.hostname.endsWith('.fbcdn.net') ||
+       ['www.facebook.com', 'web.facebook.com', 'm.facebook.com'].includes(url.hostname));
+  } catch { return false; }
+}
+
+async function readLimitedBody(response) {
+  if (!response.body) return new ArrayBuffer(0);
+  const reader = response.body.getReader();
+  const parts = [];
+  let total = 0;
+  try {
+    while (total < MAX_SCAN_BYTES) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const part = value.subarray(0, MAX_SCAN_BYTES - total);
+      parts.push(part); total += part.length;
+    }
+  } finally { await reader.cancel(); }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const part of parts) { bytes.set(part, offset); offset += part.length; }
+  return bytes.buffer;
+}
+
 async function scanUrl(url, sensitivity) {
+  if (!allowedMediaUrl(url)) return { match: false, unavailable: true };
   const key = `${sensitivity}:${url}`;
   if (cache.has(key)) return cache.get(key);
-
   let result = { match: false };
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
   try {
     const response = await fetch(url, {
-      method: 'GET',
-      credentials: 'omit',
-      cache: 'force-cache',
+      method: 'GET', credentials: 'omit', cache: 'force-cache',
+      redirect: 'error', referrerPolicy: 'no-referrer', signal: controller.signal,
       headers: { Range: `bytes=0-${MAX_SCAN_BYTES - 1}` }
     });
-    if (!response.ok && response.status !== 206) throw new Error(`HTTP ${response.status}`);
-
-    const buffer = await response.arrayBuffer();
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const buffer = await readLimitedBody(response);
     const chunks = metadataSegments(buffer, response.headers.get('content-type') || '');
     if (chunks.length) result = analyzeMetadataText(decodeMetadata(chunks), sensitivity);
-  } catch {
-    result = { match: false, unavailable: true };
-  }
-
+  } catch { result = { match: false, unavailable: true }; }
+  finally { clearTimeout(timeout); }
   remember(key, result);
   return result;
 }
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type !== 'NO_AI_FEED_SCAN_METADATA') return;
+  if (sender.id !== chrome.runtime.id || !/^https:\/\/(www|web|m)\.facebook\.com\//i.test(sender.url || '')) return;
 
   (async () => {
     const urls = Array.isArray(message.urls) ? message.urls.slice(0, 3) : [];

@@ -9,12 +9,12 @@ A Chrome extension that can filter **AI content, unwanted topics, creators, Face
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](#install-in-60-seconds)
 [![Facebook](https://img.shields.io/badge/Works%20on-Facebook-1877F2?logo=facebook&logoColor=white)](#)
 [![YouTube](https://img.shields.io/badge/Works%20on-YouTube-FF0000?logo=youtube&logoColor=white)](#)
-[![Version](https://img.shields.io/badge/version-1.3.1-6f42c1)](./manifest.json)
+[![Version](https://img.shields.io/badge/version-1.3.2-6f42c1)](./manifest.json)
 [![Privacy](https://img.shields.io/badge/Privacy-Local%20Only-2ea44f)](./PRIVACY.md)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](./LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Ibrahim-3d/No-AI-Feed?style=flat&logo=github)](https://github.com/Ibrahim-3d/No-AI-Feed/stargazers)
 
-## [⬇️ Download .ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/archive/refs/heads/main.zip)
+## [⬇️ Download .ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/raw/refs/heads/main/dist/no-ai-feed-1.3.2-chrome.zip)
 
 **Free for personal use · No tracking · No external AI · No image scanning**
 
@@ -24,12 +24,12 @@ A Chrome extension that can filter **AI content, unwanted topics, creators, Face
 
 ## Install in 60 seconds
 
-1. **[Download .ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/archive/refs/heads/main.zip)**.
+1. **[Download .ZIP](https://github.com/Ibrahim-3d/No-AI-Feed/raw/refs/heads/main/dist/no-ai-feed-1.3.2-chrome.zip)**.
 2. Extract the ZIP.
 3. Open `chrome://extensions` in Chrome.
 4. Turn on **Developer mode**.
 5. Click **Load unpacked**.
-6. Select the extracted `No-AI-Feed-main` folder.
+6. Select the extracted folder containing `manifest.json`.
 7. Open **Facebook or YouTube** and **refresh once**.
 
 Then click the **No AI Feed** extension icon and choose what you want hidden.
@@ -186,3 +186,6 @@ Found something that should have been filtered? Want another platform supported?
 **© 2026 Ibrahim Elrouby · Proprietary software · All rights reserved.**
 
 </div>
+## Publishing preparation
+
+Version 1.3.2 includes a clean store upload ZIP in `dist/` and listing assets, privacy declarations, reviewer instructions and the remaining verification gates in [store/PUBLISH-CHECKLIST.md](./store/PUBLISH-CHECKLIST.md). See [store/QA.md](./store/QA.md) for test coverage and limitations.

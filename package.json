@@ -1,0 +1,12 @@
+{
+  "name": "no-ai-feed-release-tools",
+  "private": true,
+  "version": "1.3.2",
+  "scripts": {
+    "test": "node --test tests/background.test.cjs",
+    "test:browser": "node tests/browser.cjs",
+    "assets": "node scripts/store-assets.cjs",
+    "package": "python3 scripts/package.py"
+  },
+  "devDependencies": { "playwright": "1.62.1" }
+}

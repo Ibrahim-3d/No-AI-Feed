@@ -1,0 +1,37 @@
+TITLE
+No AI Feed
+
+SUMMARY
+Filter AI topics, unwanted phrases and creators on Facebook and YouTube. Local rules, English/Arabic controls, blur or hide.
+
+DETAILED DESCRIPTION
+Your feed, your rules.
+
+No AI Feed helps you reduce unwanted content on Facebook and YouTube. Filter AI-related topics, add your own words and phrases, or hide posts and video cards from matching creators, pages, and channels.
+
+Choose how you filter:
+• Built-in AI topic filtering with adjustable coverage.
+• Personal topic, phrase, and creator rules.
+• Exceptions that keep matching content visible.
+• Blur with a reveal button, or hide matching items completely.
+• Optional explanations and adjustable blur strength.
+• English and Arabic popup controls.
+• Facebook AI-label and supported media-metadata checks.
+
+Personal rules work even when built-in AI keyword filtering is off. All filtering decisions happen locally in your browser. Settings stay on your device. No account, external AI service, analytics, or advertising tracker is used by the extension.
+
+How it works
+The extension reads visible feed text, titles, labels, creator names, and relevant URLs on supported pages. When Facebook metadata detection is enabled, it requests supported media from Facebook/CDN hosts and checks a limited portion locally. Feed content and settings are not sent to the developer.
+
+Know the limits
+This is a rule-based filter, not an AI image or video detector. It does not analyze pixels or YouTube transcripts. It can miss unlabeled AI content or filter human-created discussions about AI. Higher coverage can also match broad technology terms. Use exceptions or reveal controls when needed. Results depend on the page layout, language, and available metadata; platform changes can affect filtering.
+
+After installation, refresh any Facebook or YouTube tabs that were already open. Click the extension icon to choose your settings. The main quick-add field adds a topic; use Manage to add creator/page/channel rules.
+
+Permissions
+Local storage saves your preferences. Facebook and YouTube access lets the extension filter supported pages. Facebook CDN access enables the optional media-metadata feature. No access to unrelated sites is requested.
+
+Free for personal, non-commercial use. Proprietary software, copyright 2026 Ibrahim Elrouby. Independent project; not affiliated with or endorsed by Meta, Facebook, Google, or YouTube.
+
+Support: https://github.com/Ibrahim-3d/No-AI-Feed/issues
+Privacy: https://github.com/Ibrahim-3d/No-AI-Feed/blob/main/PRIVACY.md
