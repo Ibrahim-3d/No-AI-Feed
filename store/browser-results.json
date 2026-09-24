@@ -1,0 +1,22 @@
+{
+  "browser": "153.0.8010.0",
+  "mode": "Chromium DOM fixtures; Chrome APIs mocked, not a live-site or installed-extension test",
+  "checks": [
+    "en: 380x540 popup, management and advanced views rendered",
+    "ar: 380x540 popup, management and advanced views rendered",
+    "popup saves a personal topic rule",
+    "popup persists metadata toggle",
+    "youtube: one click reveals an item matched by both filters",
+    "youtube: exception overrides built-in and personal rules",
+    "youtube: hide then disable restores item",
+    "youtube: personal rule works with AI detectors disabled",
+    "youtube: rescan reapplies personal rule",
+    "facebook: one click reveals an item matched by both filters",
+    "facebook: exception overrides built-in and personal rules",
+    "facebook: hide then disable restores item",
+    "facebook: personal rule works with AI detectors disabled",
+    "facebook: rescan reapplies personal rule",
+    "no uncaught browser page errors"
+  ],
+  "errors": []
+}

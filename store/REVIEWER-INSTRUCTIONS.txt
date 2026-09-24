@@ -1,0 +1,16 @@
+No AI Feed 1.3.2 — review instructions
+
+The extension does not require an extension account, license key, subscription, or backend. Facebook feed testing requires the reviewer's own Facebook account. YouTube search can be tested signed out. Do not provide or request personal account credentials.
+
+1. Install the ZIP and refresh any already-open Facebook/YouTube pages.
+2. Open https://www.youtube.com/results?search_query=ChatGPT and open the popup. With filtering enabled, matching visible video cards should be blurred and show an explanation/reveal button. This is keyword matching, not a guarantee that a video is AI-generated.
+3. Click Show video on a match. The card should become visible. Rescan to restore filtering.
+4. Choose Hide completely; matching cards should disappear. Turn the main switch off; hidden/blurred content should be restored.
+5. Open Advanced settings and turn AI Filter off. Go back, add a distinctive phrase from a visible title in My Filters. That card should still be filtered by the personal rule.
+6. Use Manage > Creator/page/channel to add a visible channel name; matching cards should be filtered. Remove the rule to restore them.
+7. Add a matching phrase under Exceptions. The matching card/post should remain visible even when an AI, label, metadata, or personal rule otherwise matches.
+8. Switch EN/AR. Check the primary, Manage, and Advanced views; close/reopen to verify persistence.
+9. On Facebook, repeat personal topic/source, blur/reveal, hide, exception and master-switch checks. AI labels and metadata depend on content being available and are best effort; no fabricated labels are added to the real site.
+10. Metadata detection only reads supported Facebook/CDN media bytes locally. It does not analyze pixels. No remote scripts, analytics, developer data upload, YouTube video download or transcript processing.
+
+Known limitations: current site DOM and visible text determine results; unlabeled AI content may be missed and human discussions can match. Broad filter coverage intentionally includes adjacent technology words. The extension does not replace platform moderation. Desktop Chrome is the primary validation target; mobile host matches do not imply a Chrome-for-Android extension release.

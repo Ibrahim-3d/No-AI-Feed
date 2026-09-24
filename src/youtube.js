@@ -106,6 +106,8 @@
   }
 
   function getCardText(card) {
+    card = card.cloneNode(true);
+    card.querySelectorAll('[data-no-ai-feed-youtube-overlay], [data-no-ai-feed-personal-overlay]').forEach((el) => el.remove());
     const pieces = [card.innerText || card.textContent || ''];
     card.querySelectorAll('[title], [aria-label]').forEach((el) => {
       const title = el.getAttribute('title');
@@ -174,6 +176,7 @@
       event.preventDefault();
       event.stopPropagation();
       state.temporarilyShown.add(card);
+      card.dispatchEvent(new CustomEvent('no-ai-feed-reveal', { bubbles: true }));
       clearTreatment(card);
     });
     return overlay;
@@ -207,6 +210,8 @@
     if (!(card instanceof HTMLElement)) return;
     const signature = getCardText(card).slice(0, 8000);
     if (!force && state.processedSignature.get(card) === signature) return;
+    const previousSignature = state.processedSignature.get(card);
+    if (previousSignature !== undefined && previousSignature !== signature) state.temporarilyShown.delete(card);
     state.processedSignature.set(card, signature);
 
     if (!state.settings.enabled) {
@@ -277,9 +282,15 @@
     };
   }
 
+  document.addEventListener('no-ai-feed-reveal', (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    state.temporarilyShown.add(event.target);
+    clearTreatment(event.target);
+  });
+
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local') return;
-    for (const [key, change] of Object.entries(changes)) state.settings[key] = change.newValue;
+    for (const [key, change] of Object.entries(changes)) state.settings[key] = change.newValue ?? DEFAULTS[key];
     rescanAll();
   });
 

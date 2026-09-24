@@ -30,7 +30,7 @@ const COPY = {
     recommended: 'Recommended',
     myFilters: 'My Filters',
     manage: 'Manage',
-    quickAddPlaceholder: 'Add a topic, keyword, or creator…',
+    quickAddPlaceholder: 'Add a topic or phrase…',
     topicPhrase: 'Topic / phrase',
     creatorSource: 'Creator / page / channel',
     addFilter: 'Add filter',
@@ -58,7 +58,7 @@ const COPY = {
     facebookLabels: 'Facebook AI labels',
     facebookLabelsDesc: 'Uses labels such as “AI info” and “Made with AI”.',
     mediaMetadata: 'Media metadata',
-    mediaMetadataDesc: 'Checks supported Facebook media for AI provenance.',
+    mediaMetadataDesc: 'Reads Facebook/CDN media locally for AI metadata.',
     metadataSensitivity: 'Metadata sensitivity',
     aiCoverage: 'AI filter coverage',
     blurStrength: 'Blur strength',
@@ -125,7 +125,7 @@ const COPY = {
     recommended: 'موصى به',
     myFilters: 'فلاتري',
     manage: 'إدارة',
-    quickAddPlaceholder: 'أضف موضوعاً أو كلمة أو منشئ محتوى…',
+    quickAddPlaceholder: 'أضف موضوعاً أو عبارة…',
     topicPhrase: 'موضوع / عبارة',
     creatorSource: 'منشئ / صفحة / قناة',
     addFilter: 'إضافة فلتر',
@@ -153,7 +153,7 @@ const COPY = {
     facebookLabels: 'علامات الذكاء الاصطناعي في فيسبوك',
     facebookLabelsDesc: 'يستخدم علامات مثل “AI info” و “Made with AI”.',
     mediaMetadata: 'بيانات الوسائط',
-    mediaMetadataDesc: 'يفحص بيانات المصدر داخل وسائط فيسبوك المدعومة.',
+    mediaMetadataDesc: 'يقرأ وسائط فيسبوك وشبكة توصيله محلياً لفحص بياناتها.',
     metadataSensitivity: 'حساسية بيانات الوسائط',
     aiCoverage: 'نطاق فلترة الذكاء الاصطناعي',
     blurStrength: 'قوة التمويه',
@@ -461,6 +461,7 @@ async function removeRule(id) {
 }
 
 async function load() {
+  $('supportButton').hidden = !SUPPORT_URL;
   const settings = await chrome.storage.local.get(DEFAULTS);
   language = resolveInitialLanguage(settings.uiLanguage);
   const migration = migrateLegacyKeywords(settings);

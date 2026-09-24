@@ -31,7 +31,9 @@
     1: [
       'artificial intelligence', 'generative ai', 'gen ai', 'genai', 'ai generated',
       'ai-generated', 'chatgpt', 'openai', 'claude', 'anthropic', 'gemini',
-      'google ai', 'microsoft copilot', 'copilot ai', 'الذكاء الاصطناعي'
+      'google ai', 'microsoft copilot', 'copilot ai', 'الذكاء الاصطناعي',
+      'higgsfield', 'higgsfield ai', 'highsefield', 'astra', 'project astra',
+      'gpt-6 astra', 'gpt 6 astra', '3d jutsu', 'genjutsu'
     ],
     2: [
       'midjourney', 'stable diffusion', 'stability ai', 'dall-e', 'dalle', 'sora',
@@ -246,6 +248,7 @@
       event.preventDefault();
       event.stopPropagation();
       state.temporarilyShown.add(post);
+      post.dispatchEvent(new CustomEvent('no-ai-feed-reveal', { bubbles: true }));
       clearTreatment(post);
     });
     bar.appendChild(button);
@@ -255,8 +258,12 @@
   function clearTreatment(post) {
     post.classList.remove('no-ai-feed-removed', 'no-ai-feed-blurred');
     post.style.removeProperty('--no-ai-feed-blur');
-    const previous = post.previousElementSibling;
-    if (previous?.dataset?.noAiFeedPlaceholder === '1') previous.remove();
+    let previous = post.previousElementSibling;
+    while (previous?.dataset?.noAiFeedPlaceholder === '1' || previous?.dataset?.noAiFeedPersonalPlaceholder === '1') {
+      const before = previous.previousElementSibling;
+      if (previous.dataset.noAiFeedPlaceholder === '1') previous.remove();
+      previous = before;
+    }
   }
 
   function applyTreatment(post, analysis) {
@@ -323,9 +330,12 @@
 
     const signature = getPostSignature(post);
     if (!force && state.processedSignature.get(post) === signature) return;
+    const previousSignature = state.processedSignature.get(post);
+    if (previousSignature !== undefined && previousSignature !== signature) state.temporarilyShown.delete(post);
     state.processedSignature.set(post, signature);
 
-    if (!state.settings.enabled) {
+    state.metadataInFlight.delete(post);
+    if (!state.settings.enabled || isExcluded(getPostText(post))) {
       clearTreatment(post);
       return;
     }
@@ -416,9 +426,15 @@
     };
   }
 
+  document.addEventListener('no-ai-feed-reveal', (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    state.temporarilyShown.add(event.target);
+    clearTreatment(event.target);
+  });
+
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local') return;
-    for (const [key, change] of Object.entries(changes)) state.settings[key] = change.newValue;
+    for (const [key, change] of Object.entries(changes)) state.settings[key] = change.newValue ?? DEFAULTS[key];
     rescanAll();
   });
 

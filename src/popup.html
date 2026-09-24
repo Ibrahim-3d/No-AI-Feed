@@ -69,7 +69,7 @@
         </div>
 
         <div class="quick-add">
-          <input id="ruleValue" type="text" autocomplete="off" maxlength="160" data-i18n-placeholder="quickAddPlaceholder" placeholder="Add a topic, keyword, or creator…" />
+          <input id="ruleValue" type="text" autocomplete="off" maxlength="160" data-i18n-placeholder="quickAddPlaceholder" placeholder="Add a topic or phrase…" />
           <button id="addRule" class="add-button" type="button" data-i18n-aria="addFilter" title="Add filter">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
           </button>
@@ -162,7 +162,7 @@
       <div id="advancedTabPanel" class="manage-panel" role="tabpanel" hidden>
         <label class="advanced-row"><div><b data-i18n="aiFilter">AI Filter</b><span data-i18n="aiFilterDesc">Hide AI-generated content, tools, and signals.</span></div><input id="detectKeywords" type="checkbox" /></label>
         <label class="advanced-row"><div><b data-i18n="facebookLabels">Facebook AI labels</b><span data-i18n="facebookLabelsDesc">Uses labels such as “AI info” and “Made with AI”.</span></div><input id="detectLabels" type="checkbox" /></label>
-        <label class="advanced-row"><div><b data-i18n="mediaMetadata">Media metadata</b><span data-i18n="mediaMetadataDesc">Checks supported Facebook media for AI provenance.</span></div><input id="detectMetadata" type="checkbox" /></label>
+        <label class="advanced-row"><div><b data-i18n="mediaMetadata">Media metadata</b><span data-i18n="mediaMetadataDesc">Reads Facebook/CDN media locally for AI metadata.</span></div><input id="detectMetadata" type="checkbox" /></label>
         <div id="metadataControls" class="advanced-slider"><div><label for="detectionSensitivity" data-i18n="metadataSensitivity">Metadata sensitivity</label><output id="detectionSensitivityValue">Recommended</output></div><input id="detectionSensitivity" class="range" type="range" min="1" max="5" step="1" /><p id="metadataHint" class="hint"></p></div>
         <div class="advanced-slider"><div><label for="keywordSensitivityAdvanced" data-i18n="aiCoverage">AI filter coverage</label><output id="keywordSensitivityAdvancedValue">Industry</output></div><input id="keywordSensitivityAdvanced" class="range" type="range" min="1" max="5" step="1" /></div>
         <div class="advanced-slider"><div><label for="blurStrength" data-i18n="blurStrength">Blur strength</label><output id="blurStrengthValue">14px</output></div><input id="blurStrength" class="range" type="range" min="2" max="40" step="1" /></div>

@@ -108,6 +108,8 @@
   }
 
   function getYouTubeText(item) {
+    item = item.cloneNode(true);
+    item.querySelectorAll('[data-no-ai-feed-youtube-overlay], [data-no-ai-feed-personal-overlay]').forEach((el) => el.remove());
     const pieces = [item.innerText || item.textContent || ''];
     item.querySelectorAll('[title], [aria-label]').forEach((el) => {
       const title = el.getAttribute('title');
@@ -224,6 +226,7 @@
       event.preventDefault();
       event.stopPropagation();
       state.temporarilyShown.add(item);
+      item.dispatchEvent(new CustomEvent('no-ai-feed-reveal', { bubbles: true }));
       clearTreatment(item);
     });
     return wrapper;
@@ -252,6 +255,8 @@
     const sourceText = getItemSource(item);
     const signature = `${text.slice(0, 7000)}::${sourceText}`;
     if (!force && state.processedSignature.get(item) === signature) return;
+    const previousSignature = state.processedSignature.get(item);
+    if (previousSignature !== undefined && previousSignature !== signature) state.temporarilyShown.delete(item);
     state.processedSignature.set(item, signature);
 
     if (!state.settings.enabled || normalizedRules().length === 0) {
@@ -328,13 +333,20 @@
     return '';
   }
 
+  document.addEventListener('no-ai-feed-reveal', (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    state.temporarilyShown.add(event.target);
+    clearTreatment(event.target);
+  });
+
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local') return;
-    for (const [key, change] of Object.entries(changes)) state.settings[key] = change.newValue;
+    for (const [key, change] of Object.entries(changes)) state.settings[key] = change.newValue ?? DEFAULTS[key];
     rescanAll();
   });
 
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    if (message?.type === 'NO_AI_FEED_RESCAN') { rescanAll(); return; }
     if (message?.type === 'NO_AI_FEED_CURRENT_SOURCE') {
       sendResponse({ platform, source: getCurrentSource() });
     }

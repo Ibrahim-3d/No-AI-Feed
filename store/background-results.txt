@@ -1,0 +1,14 @@
+✔ worker restart does not seed or resurrect personal keywords (2.104221ms)
+✔ media URL boundary rejects deceptive hosts, credentials and insecure URLs (0.998254ms)
+✔ metadata text respects sensitivity and does not label ordinary text (1.346759ms)
+✔ stream stops at cap even if Range is ignored (1.788424ms)
+✔ background rejects non-Facebook senders and foreign extension IDs (0.757832ms)
+✔ metadata fetch omits credentials/referrer and refuses redirects (1.132617ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.181057
