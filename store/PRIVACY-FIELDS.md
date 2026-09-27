@@ -38,9 +38,11 @@ Read the current dashboard wording before personally certifying it. The develope
 
 ## Privacy URL
 
-After merging the prepared changes: https://github.com/Ibrahim-3d/No-AI-Feed/blob/main/PRIVACY.md
+Current published privacy policy:
 
-Use the updated policy from the release branch until merged; do not pair new disclosures with an outdated policy. The repository is public, so this URL does not need a separate hosting service.
+https://github.com/Ibrahim-3d/No-AI-Feed/blob/main/PRIVACY.md
+
+Keep the Chrome Web Store disclosure fields synchronized with that policy whenever extension behavior or permissions change.
 
 ## Source
 

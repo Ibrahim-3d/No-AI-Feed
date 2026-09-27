@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a filtering capability, supported surface or product improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What unwanted feed behavior or workflow are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe what No AI Feed should do from the user's point of view.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Facebook
+        - YouTube
+        - New platform
+        - Filtering rules
+        - Popup / settings
+        - Privacy / permissions
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add examples or screenshots without sensitive information.
