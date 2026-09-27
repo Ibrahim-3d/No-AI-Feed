@@ -32,4 +32,6 @@ No AI Feed's use of information received through browser permissions complies wi
 
 ## Changes and contact
 
-Material changes will be reflected here and in store disclosures. For privacy questions, contact Ibrahim Elrouby through https://github.com/Ibrahim-3d/No-AI-Feed/issues without posting sensitive information.
+Material changes will be reflected here and in store disclosures.
+
+For privacy questions or reports that may contain sensitive information, email **noai.extension@gmail.com**. For ordinary non-sensitive bugs or feature requests, use https://github.com/Ibrahim-3d/No-AI-Feed/issues. Public GitHub issues are public; do not post private feed content, account information, credentials, or other sensitive data.
