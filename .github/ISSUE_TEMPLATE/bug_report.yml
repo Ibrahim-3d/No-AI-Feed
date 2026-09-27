@@ -1,0 +1,73 @@
+name: Bug report
+description: Report broken filtering or extension behavior
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include private feed content, account information, credentials or other sensitive data.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Facebook
+        - YouTube
+        - Extension popup / settings
+        - Packaging / installation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: No AI Feed version
+      placeholder: "1.3.2"
+    validations:
+      required: true
+  - type: input
+    id: chrome
+    attributes:
+      label: Browser and version
+      placeholder: "Chrome 153 on Windows 11"
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Extension language
+      options:
+        - English
+        - Arabic
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Explain the smallest sequence that reliably reproduces the issue.
+      placeholder: |
+        1. Open ...
+        2. Set ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add sanitized screenshots or logs if useful. Remove personal information first.
