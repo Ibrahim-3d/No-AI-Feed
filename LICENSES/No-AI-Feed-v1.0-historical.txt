@@ -1,0 +1,58 @@
+No AI Feed Proprietary Source-Available License v1.0
+
+Copyright (c) 2026 Ibrahim Elrouby. All rights reserved.
+
+1. Ownership
+
+No AI Feed, including its source code, extension package, user interface, branding, documentation, and related materials (the "Software"), is proprietary software owned by the copyright holder.
+
+The source code is made publicly visible for transparency, security review, learning, and personal installation. Public availability does not make the Software open source and does not grant any rights except those expressly stated in this license.
+
+2. Personal, Non-Commercial Use
+
+You are granted a limited, revocable, non-exclusive, non-transferable license to:
+
+- download and install the Software for your own personal, non-commercial use;
+- make copies reasonably necessary for personal installation or backup; and
+- inspect the source code for security, interoperability, research, or educational understanding.
+
+3. Prohibited Uses
+
+Without prior written permission from the copyright holder, you may not:
+
+- publish, republish, redistribute, mirror, sublicense, sell, rent, lease, or otherwise provide the Software or substantial portions of it to third parties;
+- upload, submit, distribute, or publish the Software, a modified version, or a derivative version on the Chrome Web Store, another browser-extension marketplace, an app store, package registry, website, repository, or other distribution channel;
+- rebrand, white-label, clone, fork for distribution, or present the Software or a derivative work as your own product;
+- modify, adapt, translate, combine, port, or create derivative products from the Software for distribution or commercial use;
+- copy or reuse source code, UI components, filtering logic, branding, or other substantial parts of the Software in another commercial product, service, extension, application, or library;
+- use the Software or its source code to provide a paid service, subscription, bundled product, advertising-supported product, client deliverable, or other commercial offering;
+- remove, obscure, or alter copyright, license, attribution, or proprietary notices; or
+- use the name "No AI Feed", its logo, or other branding in a way that suggests ownership, affiliation, endorsement, or authorization.
+
+4. Commercial Licensing
+
+No commercial rights are granted by this license.
+
+Any commercial use, redistribution, resale, white-labeling, marketplace publication, incorporation into a commercial product, or other commercial exploitation requires a separate written license from the copyright holder.
+
+5. No Implied Rights
+
+No patent, trademark, branding, redistribution, sublicensing, or other intellectual-property rights are granted except the limited personal-use rights stated above.
+
+6. Termination
+
+Your rights under this license terminate automatically if you violate any of its terms. Upon termination, you must stop using and distributing any unauthorized copies or derivative materials in your possession or control.
+
+7. Third-Party Materials
+
+Any third-party names, trademarks, services, platforms, or materials referenced by the Software remain the property of their respective owners and are subject to their own terms.
+
+8. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE.
+
+9. Reservation of Rights
+
+All rights not expressly granted in this license are reserved by the copyright holder.
+
+For commercial licensing or other permissions, obtain prior written authorization from the copyright holder.
